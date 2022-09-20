@@ -39,7 +39,7 @@ const GetMedicineList = async ({
       "?" +
       encodeURIComponent("serviceKey") +
       "=" +
-      "aVPes2FjKpPotmePmizZQZ12QohvNhjC4Pw9wfGCmNYznxFE2rRYClPTXSu7SLAfHCY%2BpEz%2B7aUJdKjgLZ6CjA%3D%3D";
+      process.env.NEXT_PUBLIC_API_KEY;
 
     queryParams +=
       "&" +

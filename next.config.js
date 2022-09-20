@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ["nedrug.mfds.go.kr"],
   },
+  env: {
+    API_KEY: process.env.API_KEY,
+  },
 };
 
 module.exports = nextConfig;
