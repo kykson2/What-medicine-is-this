@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import Image from "next/image";
 
 interface ImedicineInformation {
@@ -27,17 +28,25 @@ const MedicineList: NextPage<ImedicineList> = ({ medicineList }) => {
             return (
               <li key={item.itemName}>
                 {item.itemImage && (
-                  <p>
-                    {item.itemName}
-                    <span>
-                      <Image
-                        src={item.itemImage}
-                        alt={item.itemName}
-                        width={100}
-                        height={100}
-                      />
-                    </span>
-                  </p>
+                  <Link
+                    href={{
+                      pathname: "/medicine/[information]",
+                      query: { medicine: JSON.stringify(item) },
+                    }}
+                    as={`/medicine/${item.itemName}`}
+                  >
+                    <p>
+                      {item.itemName}
+                      <span>
+                        <Image
+                          src={item.itemImage}
+                          alt={item.itemName}
+                          width={100}
+                          height={100}
+                        />
+                      </span>
+                    </p>
+                  </Link>
                 )}
               </li>
             );

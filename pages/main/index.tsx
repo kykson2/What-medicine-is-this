@@ -9,7 +9,11 @@ const index: NextPage = () => {
           <a>검색해서 찾을래요</a>
         </Link>
       </div>
-      <div>증상으로 찾을래요</div>
+      <div>
+        <Link href={{ pathname: "../symptoms" }}>
+          <a>증상으로 찾을래요</a>
+        </Link>
+      </div>
     </div>
   );
 };

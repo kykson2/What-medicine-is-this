@@ -11,7 +11,7 @@ interface medicineInformation {
   itemImage: string;
 }
 interface searchProps {
-  data: { searchValue: string };
+  data: { searchValue?: string };
   setMedicineList: React.Dispatch<React.SetStateAction<medicineInformation[]>>;
 }
 

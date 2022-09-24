@@ -1,11 +1,10 @@
 import type { NextPage } from "next";
-import Nav from "./nav";
+import Nav from "../components/layout/Navbar";
 import Main from "./main";
 
 const Home: NextPage = () => {
   return (
     <div>
-      <Nav></Nav>
       <Main></Main>
     </div>
   );
