@@ -2,24 +2,17 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-interface ImedicineInformation {
-  entpName: string;
-  itemName: string;
-  efcyQesitm: string;
-  useMethodQesitm: string;
-  atpnWarnQesitm: string;
-  atpnQesitm: string;
-  intrcQesitm: string;
-  seQesitm: string;
-  depositMethodQesitm: string;
-  itemImage: string;
-}
+import { ImedicineList } from "../../interfaces/medicine";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
-interface ImedicineList {
-  medicineList: ImedicineInformation[];
-}
+import { searchMedicineList } from "../../store/medicine/medicineSlice";
 
 const MedicineList: NextPage<ImedicineList> = ({ medicineList }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(searchMedicineList(medicineList));
+  }, [dispatch, medicineList]);
   return (
     <section>
       <ul>

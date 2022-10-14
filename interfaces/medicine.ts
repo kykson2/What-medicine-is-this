@@ -1,0 +1,39 @@
+export interface ImedicineInformation {
+  entpName: string;
+  itemName: string;
+  efcyQesitm: string;
+  useMethodQesitm: string;
+  atpnWarnQesitm: string;
+  atpnQesitm: string;
+  intrcQesitm: string;
+  seQesitm: string;
+  depositMethodQesitm: string;
+  itemImage: string;
+}
+
+export interface ImedicineList {
+  medicineList: ImedicineInformation[];
+}
+
+export interface IsearchProps {
+  data: {
+    searchValue?: string;
+    mainSymptom?: string;
+    subSymptom?: string;
+    ADR?: string;
+  };
+  setMedicineList: React.Dispatch<React.SetStateAction<ImedicineInformation[]>>;
+}
+
+export interface IapiType {
+  header: {
+    resultCode: string;
+    resultMsg: string;
+  };
+  body: {
+    items: ImedicineInformation[];
+    numOfRows: number;
+    pageNo: number;
+    totalCount: number;
+  };
+}

@@ -21,7 +21,7 @@ const Information: NextPage = () => {
   );
 
   const regex = /(:?<|>|p|n|\/)/g;
-
+  console.log(query.itemImage);
   return (
     <section>
       {/* 이미지 */}
@@ -32,7 +32,7 @@ const Information: NextPage = () => {
         height={100}
       ></Image>
       {/* 약 이름 */}
-      <h3>{query.itemName}</h3>
+      <h2>{query.itemName}</h2>
 
       {/* 복용 */}
       <div>
@@ -48,8 +48,9 @@ const Information: NextPage = () => {
 
       {/* 주의사항 */}
       <div>
-        <h4>주의 사항</h4>
+        <h4>복용 시 주의해야할 약</h4>
         <p>{query.intrcQesitm.replace(regex, " ")}</p>
+        <h4>복용 시 주의해야할 이상반응</h4>
         <p>{query.seQesitm.replace(regex, " ")}</p>
       </div>
 
@@ -58,6 +59,10 @@ const Information: NextPage = () => {
         <h4>보관 방법</h4>
         <p>{query.depositMethodQesitm.replace(regex, " ")}</p>
       </div>
+
+      <button type="button" onClick={() => router.back()}>
+        뒤로가기
+      </button>
     </section>
   );
 };
