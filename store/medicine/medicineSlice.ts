@@ -14,7 +14,7 @@ const medicineSlice = createSlice({
   initialState,
   reducers: {
     searchMedicineList: (state: ImedicineInformation[], action: IpayLoad) => {
-      state = action.payload;
+      state = [...action.payload];
     },
   },
 });

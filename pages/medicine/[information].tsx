@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { ImedicineInformation } from "../../interfaces/medicine";
 
 interface medicineInformation {
   entpName: string;
@@ -16,9 +18,7 @@ interface medicineInformation {
 }
 const Information: NextPage = () => {
   const router = useRouter();
-  const query: medicineInformation = JSON.parse(
-    router.query.medicine as string
-  );
+  let query: medicineInformation = JSON.parse(router.query.medicine as string);
 
   const regex = /(:?<|>|p|n|\/)/g;
   console.log(query.itemImage);

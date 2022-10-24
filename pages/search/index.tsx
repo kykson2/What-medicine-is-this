@@ -1,29 +1,20 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import GetMedicineList from "../../components/medicine/GetMedicineList";
 import MedicineList from "../medicine/MedicineList";
+
+import { useSelector } from "react-redux";
+import { ImedicineInformation } from "../../interfaces/medicine";
+import { RootState } from "../../store/store";
 
 interface formProps {
   searchValue: string;
 }
 
-interface medicineInformation {
-  entpName: string;
-  itemName: string;
-  efcyQesitm: string;
-  useMethodQesitm: string;
-  atpnWarnQesitm: string;
-  atpnQesitm: string;
-  intrcQesitm: string;
-  seQesitm: string;
-  depositMethodQesitm: string;
-  itemImage: string;
-}
-
 const SearchMedicine: NextPage = () => {
-  const [medicineList, setMedicineList] = useState<medicineInformation[]>([]);
+  const [medicineList, setMedicineList] = useState<ImedicineInformation[]>([]);
   const {
     register,
     handleSubmit,
@@ -33,6 +24,15 @@ const SearchMedicine: NextPage = () => {
       searchValue: "",
     },
   });
+
+  if (medicineList.length === 0) {
+    // const query = useSelector((state: RootState) => state.medicineList);
+    // console.log(query);
+    // setMedicineList(query);
+    // query.map((item: ImedicineInformation) => {
+    //   return setMedicineList((medicineList) => [...medicineList, item]);
+    // });
+  }
 
   return (
     <div>
