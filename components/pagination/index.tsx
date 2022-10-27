@@ -17,8 +17,8 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   useEffect(() => {
     setPageArray(
       Array(postsPerPage)
-        .fill()
-        .map((v, i) => i + 1)
+        .fill(0)
+        .map((_, i) => i + 1)
     );
   }, [postsPerPage]);
 
