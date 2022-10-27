@@ -21,7 +21,6 @@ const Information: NextPage = () => {
   let query: medicineInformation = JSON.parse(router.query.medicine as string);
 
   const regex = /(:?<|>|p|n|\/)/g;
-  console.log(query.itemImage);
   return (
     <section>
       {/* 이미지 */}

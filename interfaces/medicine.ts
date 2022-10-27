@@ -1,3 +1,5 @@
+import { AppDispatch } from "../store/store";
+
 export interface ImedicineInformation {
   entpName: string;
   itemName: string;
@@ -23,6 +25,7 @@ export interface IsearchProps {
     ADR?: string;
   };
   setMedicineList: React.Dispatch<React.SetStateAction<ImedicineInformation[]>>;
+  dispatch: AppDispatch;
 }
 
 export interface IapiType {

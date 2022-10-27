@@ -14,10 +14,14 @@ const medicineSlice = createSlice({
   initialState,
   reducers: {
     searchMedicineList: (state: ImedicineInformation[], action: IpayLoad) => {
-      state = [...action.payload];
+      state.push(...action.payload);
+    },
+
+    reset: (state: ImedicineInformation[]) => {
+      state.splice(0);
     },
   },
 });
 
-export const { searchMedicineList } = medicineSlice.actions;
+export const { searchMedicineList, reset } = medicineSlice.actions;
 export default medicineSlice.reducer;

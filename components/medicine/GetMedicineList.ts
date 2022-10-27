@@ -1,9 +1,15 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { IsearchProps, IapiType } from "../../interfaces/medicine";
+
+import { reset } from "../../store/medicine/medicineSlice";
 
 const GetMedicineList = async ({
   data,
   setMedicineList,
+  dispatch,
 }: IsearchProps): Promise<void> => {
+  dispatch(reset());
   const url =
     "http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList";
   let queryParams =
@@ -33,8 +39,13 @@ const GetMedicineList = async ({
   queryParams +=
     "&" + encodeURIComponent("type") + "=" + encodeURIComponent("json");
 
+  queryParams +=
+    "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("100");
+
   const response: Response = await fetch(url + queryParams);
   const list: IapiType = await response.json();
+
+  console.log(list);
 
   // 검색 결과와 같은 증상을 호전시키는 약 찾기
   const regexp = new RegExp(data.subSymptom as string, "gi");
