@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import GetMedicineList from "../../components/medicine/GetMedicineList";
 import MedicineList from "../medicine/MedicineList";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ImedicineInformation } from "../../interfaces/medicine";
 import { RootState } from "../../store/store";
 
@@ -14,6 +14,8 @@ interface formProps {
 }
 
 const SearchMedicine: NextPage = () => {
+  const dispatch = useDispatch();
+
   const [medicineList, setMedicineList] = useState<ImedicineInformation[]>([]);
   const {
     register,
@@ -39,7 +41,7 @@ const SearchMedicine: NextPage = () => {
       약을 검색합니다.
       <form
         onSubmit={handleSubmit((data: formProps) => {
-          GetMedicineList({ data, setMedicineList });
+          GetMedicineList({ data, setMedicineList, dispatch });
         })}
       >
         <input {...register("searchValue", { required: true })} />
