@@ -6,8 +6,8 @@ import GetMedicineList from "../../components/medicine/GetMedicineList";
 import MedicineList from "../medicine/MedicineList";
 
 import { useDispatch, useSelector } from "react-redux";
-import { ImedicineInformation } from "../../interfaces/medicine";
-import { RootState } from "../../store/store";
+import { ImedicineList, ImedicineInformation } from "../../interfaces/medicine";
+import { reset } from "../../store/medicine/medicineSlice";
 
 interface formProps {
   searchValue: string;
@@ -15,8 +15,19 @@ interface formProps {
 
 const SearchMedicine: NextPage = () => {
   const dispatch = useDispatch();
-
   const [medicineList, setMedicineList] = useState<ImedicineInformation[]>([]);
+  const searchMedicineList = useSelector(
+    (state: ImedicineList) => state.medicineList
+  );
+
+  // 새로고침 시  검색했던 기록이 있으면 검색결과 가져옴
+  useEffect(() => {
+    if (searchMedicineList.length && medicineList.length === 0) {
+      dispatch(reset());
+      setMedicineList(searchMedicineList);
+    }
+  }, [dispatch, medicineList.length, searchMedicineList]);
+
   const {
     register,
     handleSubmit,
@@ -26,15 +37,6 @@ const SearchMedicine: NextPage = () => {
       searchValue: "",
     },
   });
-
-  if (medicineList.length === 0) {
-    // const query = useSelector((state: RootState) => state.medicineList);
-    // console.log(query);
-    // setMedicineList(query);
-    // query.map((item: ImedicineInformation) => {
-    //   return setMedicineList((medicineList) => [...medicineList, item]);
-    // });
-  }
 
   return (
     <div>
