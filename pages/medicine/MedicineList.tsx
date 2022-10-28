@@ -16,8 +16,6 @@ const MedicineList: NextPage<ImedicineList> = ({ medicineList }) => {
     dispatch(searchMedicineList(medicineList));
   }, [dispatch, medicineList]);
 
-  console.log(medicineList);
-
   return (
     <section>
       <ul>
