@@ -6,12 +6,12 @@ import GetMedicineList from "../../components/medicine/GetMedicineList";
 import MedicineList from "../medicine/MedicineList";
 
 import { useDispatch, useSelector } from "react-redux";
-import { ImedicineList, ImedicineInformation } from "../../interfaces/medicine";
+import {
+  ImedicineList,
+  ImedicineInformation,
+  formProps,
+} from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
-
-interface formProps {
-  searchValue: string;
-}
 
 const SearchMedicine: NextPage = () => {
   const dispatch = useDispatch();

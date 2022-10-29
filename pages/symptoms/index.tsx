@@ -1,29 +1,33 @@
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import GetMedicineList from "../../components/medicine/GetMedicineList";
 import MedicineList from "../medicine/MedicineList";
+import { useDispatch, useSelector } from "react-redux";
 
-interface formProps {
-  mainSymptom: string;
-}
-
-interface medicineInformation {
-  entpName: string;
-  itemName: string;
-  efcyQesitm: string;
-  useMethodQesitm: string;
-  atpnWarnQesitm: string;
-  atpnQesitm: string;
-  intrcQesitm: string;
-  seQesitm: string;
-  depositMethodQesitm: string;
-  itemImage: string;
-}
+import {
+  ImedicineList,
+  ImedicineInformation,
+  formProps,
+} from "../../interfaces/medicine";
+import { reset } from "../../store/medicine/medicineSlice";
 
 const MySymptoms: NextPage = () => {
-  const [medicineList, setMedicineList] = useState<medicineInformation[]>([]);
+  const dispatch = useDispatch();
+  const [medicineList, setMedicineList] = useState<ImedicineInformation[]>([]);
+  const searchMedicineList = useSelector(
+    (state: ImedicineList) => state.medicineList
+  );
+
+  // 새로고침 시  검색했던 기록이 있으면 검색결과 가져옴
+  useEffect(() => {
+    if (searchMedicineList.length && medicineList.length === 0) {
+      dispatch(reset());
+      setMedicineList(searchMedicineList);
+    }
+  }, [dispatch, medicineList.length, searchMedicineList]);
+
   const {
     register,
     handleSubmit,
@@ -41,7 +45,7 @@ const MySymptoms: NextPage = () => {
       <h3>증상으로 찾습니다.</h3>
       <form
         onSubmit={handleSubmit((data: formProps) => {
-          GetMedicineList({ data, setMedicineList });
+          GetMedicineList({ data, setMedicineList, dispatch });
         })}
       >
         <div>주요 증상을 알려주세요</div>

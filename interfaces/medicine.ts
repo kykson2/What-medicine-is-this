@@ -40,3 +40,8 @@ export interface IapiType {
     totalCount: number;
   };
 }
+
+export interface formProps {
+  searchValue?: string;
+  mainSymptom?: string;
+}
