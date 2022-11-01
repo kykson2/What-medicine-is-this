@@ -24,17 +24,7 @@ const medicineDetailSlice = createSlice({
   initialState,
   reducers: {
     medicineDetail: (state: ImedicineInformation, action: IpayLoad) => {
-      state.entpName = action.payload.entpName;
-      state.itemName = action.payload.itemName;
-      state.useMethodQesitm = action.payload.useMethodQesitm;
-      state.efcyQesitm = action.payload.efcyQesitm;
-      state.atpnWarnQesitm = action.payload.atpnWarnQesitm;
-      state.atpnQesitm = action.payload.atpnQesitm;
-      state.intrcQesitm = action.payload.intrcQesitm;
-      state.seQesitm = action.payload.seQesitm;
-      state.depositMethodQesitm = action.payload.depositMethodQesitm;
-      state.depositMethodQesitm = action.payload.depositMethodQesitm;
-      state.itemImage = action.payload.itemImage;
+      state = Object.assign(state, action.payload);
     },
   },
 });
