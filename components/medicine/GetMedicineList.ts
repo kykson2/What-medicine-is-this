@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { IsearchProps, IapiType } from "../../interfaces/medicine";
 
 import { reset } from "../../store/medicine/medicineSlice";

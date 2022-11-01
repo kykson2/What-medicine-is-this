@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import medicineListReducer from "./medicine/medicineSlice";
+import medicineDetailReducer from "./medicine/medicineDetailSlice";
 
 import {
   FLUSH,
@@ -15,11 +16,11 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["medicineList"],
 };
 
 const rootReducer = combineReducers({
   medicineList: medicineListReducer,
+  medicineDetail: medicineDetailReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -33,6 +34,7 @@ const store = configureStore({
       },
     }),
 });
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const persistor = persistStore(store);

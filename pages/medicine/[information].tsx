@@ -1,24 +1,52 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { useSelector } from "react-redux";
-import { ImedicineInformation } from "../../interfaces/medicine";
+import {
+  ImedicineDetailPersist,
+  ImedicineInformation,
+} from "../../interfaces/medicine";
+import { useDispatch, useSelector } from "react-redux";
+import { medicineDetail } from "../../store/medicine/medicineDetailSlice";
+import { useEffect, useState } from "react";
 
-interface medicineInformation {
-  entpName: string;
-  itemName: string;
-  efcyQesitm: string;
-  useMethodQesitm: string;
-  atpnWarnQesitm: string;
-  atpnQesitm: string;
-  intrcQesitm: string;
-  seQesitm: string;
-  depositMethodQesitm: string;
-  itemImage: string;
-}
 const Information: NextPage = () => {
   const router = useRouter();
-  let query: medicineInformation = JSON.parse(router.query.medicine as string);
+  const dispatch = useDispatch();
+  const [query, setQuery] = useState<ImedicineInformation>({
+    entpName: "",
+    itemName: "",
+    efcyQesitm: "",
+    useMethodQesitm: "",
+    atpnWarnQesitm: "",
+    atpnQesitm: "",
+    intrcQesitm: "",
+    seQesitm: "",
+    depositMethodQesitm: "",
+    itemImage: "",
+  });
+  const history: ImedicineInformation = useSelector(
+    (state: ImedicineDetailPersist) => {
+      return state.medicineDetail;
+    }
+  );
+
+  useEffect(() => {
+    if ((router.query.medicine as string) !== undefined) {
+      setQuery(JSON.parse(router.query.medicine as string));
+    }
+  }, [dispatch, router.query.medicine]);
+
+  useEffect(() => {
+    if ((router.query.medicine as string) !== undefined) {
+      dispatch(medicineDetail(JSON.parse(router.query.medicine as string)));
+    }
+  }, [dispatch, query, router.query.medicine]);
+
+  useEffect(() => {
+    if ((router.query.medicine as string) === undefined) {
+      setQuery(history as ImedicineInformation);
+    }
+  }, [dispatch, history, router.query.medicine]);
 
   const regex = /(:?<|>|p|n|\/)/g;
   return (

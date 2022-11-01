@@ -13,6 +13,10 @@ export interface ImedicineInformation {
   itemImage: string;
 }
 
+export interface ImedicineDetailPersist {
+  medicineDetail: ImedicineInformation;
+}
+
 export interface ImedicineList {
   medicineList: ImedicineInformation[];
 }
