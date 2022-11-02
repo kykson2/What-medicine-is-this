@@ -53,6 +53,12 @@ const GetMedicineList = async ({
   if (data.subSymptom === undefined) {
     setMedicineList(list.body.items);
   }
+
+  if (data.ADR !== undefined) {
+    setMedicineList(
+      list.body.items.filter((item) => !item.intrcQesitm.match(regexp))
+    );
+  }
 };
 
 export default GetMedicineList;

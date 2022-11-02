@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 const Information: NextPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+
   const [query, setQuery] = useState<ImedicineInformation>({
     entpName: "",
     itemName: "",
@@ -24,24 +25,22 @@ const Information: NextPage = () => {
     depositMethodQesitm: "",
     itemImage: "",
   });
+
   const history: ImedicineInformation = useSelector(
     (state: ImedicineDetailPersist) => {
       return state.medicineDetail;
     }
   );
 
+  // 라우터 통해서 약 정보 가져올 때
   useEffect(() => {
     if ((router.query.medicine as string) !== undefined) {
       setQuery(JSON.parse(router.query.medicine as string));
+      dispatch(medicineDetail(JSON.parse(router.query.medicine as string)));
     }
   }, [dispatch, router.query.medicine]);
 
-  useEffect(() => {
-    if ((router.query.medicine as string) !== undefined) {
-      dispatch(medicineDetail(JSON.parse(router.query.medicine as string)));
-    }
-  }, [dispatch, query, router.query.medicine]);
-
+  // 페이지 새로고침 시 리덕스에 저장된 약 정보 가져옴
   useEffect(() => {
     if ((router.query.medicine as string) === undefined) {
       setQuery(history as ImedicineInformation);

@@ -48,4 +48,5 @@ export interface IapiType {
 export interface formProps {
   searchValue?: string;
   mainSymptom?: string;
+  ADR?: string;
 }
