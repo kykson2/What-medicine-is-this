@@ -1,4 +1,8 @@
-import { IsearchProps, IapiType } from "../../interfaces/medicine";
+import {
+  IsearchProps,
+  IapiType,
+  ImedicineInformation,
+} from "../../interfaces/medicine";
 
 import { reset } from "../../store/medicine/medicineSlice";
 
@@ -43,13 +47,28 @@ const GetMedicineList = async ({
   const response: Response = await fetch(url + queryParams);
   const list: IapiType = await response.json();
 
-  // 검색 결과와 같은 증상을 호전시키는 약 찾기
+  // 주요 증상 외 다른 증상도 같이 호전시키는 약 찾기
   const regexp = new RegExp(data.subSymptom as string, "gi");
+  const regADR = new RegExp(data.adr as string, "gi");
   if (data.subSymptom !== undefined) {
-    setMedicineList(
-      list.body.items.filter((item) => item.efcyQesitm.match(regexp))
-    );
+    if (data.adr === "") {
+      setMedicineList(
+        list.body.items.filter((item: ImedicineInformation) =>
+          item.efcyQesitm.match(regexp)
+        )
+      );
+    }
+    if (data.adr !== "") {
+      setMedicineList(
+        list.body.items.filter(
+          (item: ImedicineInformation) =>
+            item.efcyQesitm.match(regexp) && !item.intrcQesitm.match(regADR)
+        )
+      );
+    }
   }
+
+  // 다른 증상이 없을 경우
   if (data.subSymptom === undefined) {
     setMedicineList(list.body.items);
   }

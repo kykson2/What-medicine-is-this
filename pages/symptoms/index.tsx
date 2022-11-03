@@ -36,7 +36,7 @@ const MySymptoms: NextPage = () => {
     defaultValues: {
       mainSymptom: "",
       subSymptom: "",
-      ADR: "",
+      adr: "",
     },
   });
 
@@ -56,8 +56,8 @@ const MySymptoms: NextPage = () => {
         )}
         <div>다른 증상도 있으신 가요?</div>
         <input {...register("subSymptom")} />
-        <div>부작용이 있는 약이 있으신가요?</div>
-        <input {...register("ADR")} />
+        <div>복용 중인 약이 있으신가요?</div>
+        <input {...register("adr")} />
       </form>
       <MedicineList medicineList={medicineList} />
       <div>
