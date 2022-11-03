@@ -31,12 +31,15 @@ const MySymptoms: NextPage = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
       mainSymptom: "",
       subSymptom: "",
       adr: "",
+      subSymptomToggle: false,
+      adrToggle: false,
     },
   });
 
@@ -54,10 +57,20 @@ const MySymptoms: NextPage = () => {
         {errors.mainSymptom?.type === "required" && (
           <p>주요 증상을 입력하세요</p>
         )}
-        <div>다른 증상도 있으신 가요?</div>
-        <input {...register("subSymptom")} />
-        <div>복용 중인 약이 있으신가요?</div>
-        <input {...register("adr")} />
+        <div>
+          <div>다른 증상도 있으신 가요?</div>
+          <input
+            {...register("subSymptom")}
+            disabled={!watch("subSymptomToggle")}
+          />
+          <input type="checkbox" {...register("subSymptomToggle")} />
+        </div>
+
+        <div>
+          <div>복용 중인 약이 있으신가요?</div>
+          <input {...register("adr")} disabled={!watch("adrToggle")} />
+          <input type="checkbox" {...register("adrToggle")} />
+        </div>
       </form>
       <MedicineList medicineList={medicineList} />
       <div>
