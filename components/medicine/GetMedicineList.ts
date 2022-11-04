@@ -50,29 +50,49 @@ const GetMedicineList = async ({
   // 주요 증상 외 다른 증상도 같이 호전시키는 약 찾기
   const regexp = new RegExp(data.subSymptom as string, "gi");
   const regADR = new RegExp(data.adr as string, "gi");
-  if (data.subSymptom !== undefined) {
+  if (data.subSymptom !== "") {
     // 복용중인 약이 없을 경우
     if (data.adr === "") {
-      setMedicineList(
-        list.body.items.filter((item: ImedicineInformation) =>
-          item.efcyQesitm.match(regexp)
-        )
-      );
+      if (list.body.items)
+        setMedicineList(
+          list.body.items &&
+            list.body.items.filter((item: ImedicineInformation) =>
+              item.efcyQesitm.match(regexp)
+            )
+        );
     }
 
     // 복용 중인 약이 있을 경우
     if (data.adr !== "") {
-      setMedicineList(
-        list.body.items.filter(
-          (item: ImedicineInformation) =>
-            item.efcyQesitm.match(regexp) && !item.intrcQesitm.match(regADR)
-        )
-      );
+      if (list.body.items)
+        setMedicineList(
+          list.body.items &&
+            list.body.items.filter(
+              (item: ImedicineInformation) =>
+                item.efcyQesitm.match(regexp) && !item.intrcQesitm.match(regADR)
+            )
+        );
     }
   }
 
   // 다른 증상이 없을 경우
-  if (data.subSymptom === undefined) {
+
+  if (data.adr === "") {
+    setMedicineList(list.body.items);
+  }
+
+  // 복용 중인 약이 있을 경우
+  if (data.adr !== "") {
+    setMedicineList(
+      list.body.items &&
+        list.body.items.filter(
+          (item: ImedicineInformation) =>
+            item.intrcQesitm !== null && !item.intrcQesitm.match(regADR)
+        )
+    );
+  }
+
+  if (data.adr === undefined) {
     setMedicineList(list.body.items);
   }
 };

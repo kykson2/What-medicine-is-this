@@ -11,8 +11,8 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
 
   // 페이지 수
   useEffect(() => {
-    setPostsPerPage(Math.ceil(medicineList.length / 10));
-  }, [medicineList.length]);
+    if (medicineList) setPostsPerPage(Math.ceil(medicineList.length / 10));
+  }, [medicineList]);
 
   useEffect(() => {
     setPageArray(

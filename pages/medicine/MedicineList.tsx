@@ -11,7 +11,7 @@ import { searchMedicineList } from "../../store/medicine/medicineSlice";
 const MedicineList: NextPage<ImedicineList> = ({ medicineList }) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(searchMedicineList(medicineList));
+    if (medicineList) dispatch(searchMedicineList(medicineList));
   }, [dispatch, medicineList]);
 
   return (

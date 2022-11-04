@@ -26,7 +26,7 @@ const MySymptoms: NextPage = () => {
       dispatch(reset());
       setMedicineList(searchMedicineList);
     }
-  }, [dispatch, medicineList.length, searchMedicineList]);
+  }, [dispatch, medicineList, searchMedicineList]);
 
   const {
     register,
