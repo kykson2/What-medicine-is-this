@@ -51,6 +51,7 @@ const GetMedicineList = async ({
   const regexp = new RegExp(data.subSymptom as string, "gi");
   const regADR = new RegExp(data.adr as string, "gi");
   if (data.subSymptom !== undefined) {
+    // 복용중인 약이 없을 경우
     if (data.adr === "") {
       setMedicineList(
         list.body.items.filter((item: ImedicineInformation) =>
@@ -58,6 +59,8 @@ const GetMedicineList = async ({
         )
       );
     }
+
+    // 복용 중인 약이 있을 경우
     if (data.adr !== "") {
       setMedicineList(
         list.body.items.filter(
