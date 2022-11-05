@@ -30,6 +30,7 @@ export interface IsearchProps {
   };
   setMedicineList: React.Dispatch<React.SetStateAction<ImedicineInformation[]>>;
   dispatch: AppDispatch;
+  takingMedicine?: { medicine: string }[];
 }
 
 export interface IapiType {
@@ -48,4 +49,6 @@ export interface IapiType {
 export interface formProps {
   searchValue?: string;
   mainSymptom?: string;
+  subSymptom?: string;
+  adr?: string;
 }

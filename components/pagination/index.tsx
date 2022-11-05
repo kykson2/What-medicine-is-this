@@ -30,7 +30,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
 
   return (
     <div>
-      <div>{paginationBtn}</div>
+      {medicineList && <div>{paginationBtn}</div>}
       {medicineList ? (
         medicineList
           .slice(currentPage * 10 - 10, currentPage * 10)

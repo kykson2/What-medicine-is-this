@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import GetMedicineList from "../../components/medicine/GetMedicineList";
 import MedicineList from "../medicine/MedicineList";
 
@@ -12,6 +12,10 @@ import {
   formProps,
 } from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
+
+type FormValues = {
+  searchValue: string;
+};
 
 const SearchMedicine: NextPage = () => {
   const dispatch = useDispatch();
@@ -32,7 +36,7 @@ const SearchMedicine: NextPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: {
       searchValue: "",
     },
