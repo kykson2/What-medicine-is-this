@@ -13,7 +13,6 @@ const MedicineList: NextPage<ImedicineList> = ({ medicineList }) => {
   useEffect(() => {
     if (medicineList) dispatch(searchMedicineList(medicineList));
   }, [dispatch, medicineList]);
-
   return (
     <section>
       <ul>

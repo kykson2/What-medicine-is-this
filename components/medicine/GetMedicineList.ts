@@ -1,10 +1,8 @@
-import {
-  IsearchProps,
-  IapiType,
-  ImedicineInformation,
-} from "../../interfaces/medicine";
+import filterdMedicineList from "./filterMedicineList";
 
 import { reset } from "../../store/medicine/medicineSlice";
+
+import { IsearchProps, IapiType } from "../../interfaces/medicine";
 
 const GetMedicineList = async ({
   data,
@@ -48,70 +46,12 @@ const GetMedicineList = async ({
   const response: Response = await fetch(url + queryParams);
   const list: IapiType = await response.json();
 
-  // 주요 증상 외 다른 증상도 같이 호전시키는 약 찾기
-  const regexp = new RegExp(data.subSymptom as string, "gi");
-  const regADR = new RegExp(data.adr as string, "gi");
-
-  // 다른 증상이 있을 경우
-  if (data.subSymptom !== "") {
-    // 복용중인 약이 없을 경우
-    if (takingMedicine !== undefined && takingMedicine?.length === 0) {
-      setMedicineList(
-        list.body.items &&
-          list.body.items.filter((item: ImedicineInformation) =>
-            item.efcyQesitm.match(regexp)
-          )
-      );
-    }
-
-    // 복용 중인 약이 있을 경우
-    if (takingMedicine !== undefined && takingMedicine?.length !== 0) {
-      const filterdMedicineList = list.body.items.filter(
-        (medicine) =>
-          !takingMedicine?.some(
-            (v) =>
-              medicine.intrcQesitm && medicine.intrcQesitm.includes(v.medicine)
-          )
-      );
-      setMedicineList(filterdMedicineList);
-    }
-  }
-
-  if (takingMedicine !== undefined && takingMedicine?.length !== 0) {
-    const filterdMedicineList = list.body.items.filter(
-      (medicine) =>
-        !takingMedicine?.some(
-          (v) =>
-            medicine.intrcQesitm && medicine.intrcQesitm.includes(v.medicine)
-        )
-    );
-    setMedicineList(filterdMedicineList);
-  }
-
-  // 다른 증상이 없을 경우
-  if (data.subSymptom === "") {
-    // 복용중인 약이 없을 경우
-    if (takingMedicine !== undefined && takingMedicine?.length === 0) {
-      setMedicineList(list.body.items);
-    }
-
-    // 복용 중인 약이 있을 경우
-    if (takingMedicine !== undefined && takingMedicine?.length !== 0) {
-      const filterdMedicineList = list.body.items.filter(
-        (medicine) =>
-          !takingMedicine?.some(
-            (v) =>
-              medicine.intrcQesitm && medicine.intrcQesitm.includes(v.medicine)
-          )
-      );
-      setMedicineList(filterdMedicineList);
-    }
-  }
-
-  // 약 이름 검색 하는 경우
-  if (data.searchValue !== undefined) {
-    setMedicineList(list.body.items);
-  }
+  filterdMedicineList(
+    list.body.items,
+    setMedicineList,
+    data.subSymptom,
+    takingMedicine
+  );
 };
 
 export default GetMedicineList;

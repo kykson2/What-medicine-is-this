@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import GetMedicineList from "../../components/medicine/GetMedicineList";
+import { useForm } from "react-hook-form";
+import getMedicineList from "../../components/medicine/getMedicineList";
 import MedicineList from "../medicine/MedicineList";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +47,7 @@ const SearchMedicine: NextPage = () => {
       약을 검색합니다.
       <form
         onSubmit={handleSubmit((data: formProps) => {
-          GetMedicineList({ data, setMedicineList, dispatch });
+          getMedicineList({ data, setMedicineList, dispatch });
         })}
       >
         <input {...register("searchValue", { required: true })} />

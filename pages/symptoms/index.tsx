@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useForm, useFieldArray } from "react-hook-form";
-import GetMedicineList from "../../components/medicine/GetMedicineList";
+import getMedicineList from "../../components/medicine/getMedicineList";
 import MedicineList from "../medicine/MedicineList";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -58,7 +58,7 @@ const MySymptoms: NextPage = () => {
     },
   });
 
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: "takingMedicine",
   });
@@ -82,7 +82,7 @@ const MySymptoms: NextPage = () => {
       <form
         onSubmit={handleSubmit((data: formProps) => {
           const { takingMedicine } = getValues();
-          GetMedicineList({ data, setMedicineList, dispatch, takingMedicine });
+          getMedicineList({ data, setMedicineList, dispatch, takingMedicine });
         })}
       >
         <div>주요 증상을 알려주세요</div>
@@ -112,6 +112,7 @@ const MySymptoms: NextPage = () => {
             return (
               <div key={`takingMedicine.${index}.name`}>
                 {field["medicine"]}
+                <button onClick={() => remove(index)}>삭제</button>
               </div>
             );
           })}

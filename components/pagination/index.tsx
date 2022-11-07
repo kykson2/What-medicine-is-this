@@ -31,7 +31,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   return (
     <div>
       {medicineList && <div>{paginationBtn}</div>}
-      {medicineList ? (
+      {medicineList && medicineList.length ? (
         medicineList
           .slice(currentPage * 10 - 10, currentPage * 10)
           .map((item) => {
