@@ -1,9 +1,11 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import getMedicineList from "../../components/medicine/getMedicineList";
 import MedicineList from "../medicine/MedicineList";
+import searchIcon from "../../icon/search_icon.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,6 +15,7 @@ import {
 } from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
 import StyledMedicineList from "../../styles/StyledMedicineList";
+import StyledSearchPage from "../../styles/StyledSearchPage";
 
 type FormValues = {
   searchValue: string;
@@ -44,26 +47,33 @@ const SearchMedicine: NextPage = () => {
   });
 
   return (
-    <StyledMedicineList>
-      약을 검색합니다.
-      <form
-        onSubmit={handleSubmit((data: formProps) => {
-          getMedicineList({ data, setMedicineList, dispatch });
-        })}
-      >
-        <input {...register("searchValue", { required: true })} />
-        <input type="submit" />
-        {errors.searchValue?.type === "required" && (
-          <p>검색할 약을 입력해주세요.</p>
-        )}
-      </form>
-      <MedicineList medicineList={medicineList} />
-      <div>
-        <Link href={{ pathname: "/" }}>
-          <a>처음 화면으로 갈래요</a>
-        </Link>
-      </div>
-    </StyledMedicineList>
+    <StyledSearchPage>
+      <StyledMedicineList>
+        <span className="pageTitle">약 이름으로 검색합니다.</span>
+        <form
+          onSubmit={handleSubmit((data: formProps) => {
+            getMedicineList({ data, setMedicineList, dispatch });
+          })}
+        >
+          <input
+            className="searchBar"
+            {...register("searchValue", { required: true })}
+          />
+          <button className="submitButton" type="submit">
+            <Image src={searchIcon} alt="searchIcon"></Image>
+          </button>
+          {/* {errors.searchValue?.type === "required" && (
+            <p>검색할 약을 입력해주세요.</p>
+          )} */}
+        </form>
+        <MedicineList medicineList={medicineList} />
+        <div>
+          <Link href={{ pathname: "/" }}>
+            <a>처음 화면으로 갈래요</a>
+          </Link>
+        </div>
+      </StyledMedicineList>
+    </StyledSearchPage>
   );
 };
 

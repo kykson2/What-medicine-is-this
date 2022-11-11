@@ -24,6 +24,7 @@ const Information: NextPage = () => {
     seQesitm: "",
     depositMethodQesitm: "",
     itemImage: "",
+    itemSeq: "",
   });
 
   const history: ImedicineInformation = useSelector(
@@ -48,12 +49,15 @@ const Information: NextPage = () => {
   }, [dispatch, history, router.query.medicine]);
 
   const regex = /(:?<|>|p|n|\/)/g;
+  const itemKey = query.itemImage.substring(
+    query.itemImage.lastIndexOf("/") + 1
+  );
   return (
     <section>
       {/* 이미지 */}
       {query.itemImage && (
         <Image
-          src={query.itemImage}
+          src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
           alt={query.itemName}
           width={100}
           height={100}

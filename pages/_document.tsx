@@ -10,6 +10,7 @@ const Document = () => (
       />
     </Head>
     <body>
+      <title>e약은 뭐예요</title>
       <Main />
       <NextScript />
     </body>

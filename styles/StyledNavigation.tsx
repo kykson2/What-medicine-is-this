@@ -22,7 +22,7 @@ const StyledNavigation = styled.nav`
     align-items: center;
   }
 
-  title {
+  p {
     color: #000;
     display: inline;
     font-size: 30px;

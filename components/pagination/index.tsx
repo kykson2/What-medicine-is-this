@@ -35,6 +35,9 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
         medicineList
           .slice(currentPage * 10 - 10, currentPage * 10)
           .map((item) => {
+            const itemKey = item.itemImage.substring(
+              item.itemImage.lastIndexOf("/") + 1
+            );
             return (
               <li key={item.itemName}>
                 <Link
@@ -46,16 +49,15 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
                 >
                   <p>
                     {item.itemName}
-                    {item.itemImage && (
-                      <span>
-                        <Image
-                          src={item.itemImage}
-                          alt={item.itemName}
-                          width={100}
-                          height={100}
-                        />
-                      </span>
-                    )}
+
+                    <span>
+                      <Image
+                        src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
+                        alt={item.itemName}
+                        width={100}
+                        height={100}
+                      />
+                    </span>
                   </p>
                 </Link>
               </li>

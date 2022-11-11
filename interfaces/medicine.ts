@@ -11,6 +11,7 @@ export interface ImedicineInformation {
   seQesitm: string;
   depositMethodQesitm: string;
   itemImage: string;
+  itemSeq: string;
 }
 
 export interface ImedicineDetailPersist {

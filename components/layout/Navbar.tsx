@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
 import logoIcon from "../../icon/medicine_icon.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +10,7 @@ const NavigationBar: NextPage = () => {
       <Link href={{ pathname: "/" }}>
         <a>
           <Image src={logoIcon} alt="Logo" />
-          <title>e약은 뭐예요</title>
+          <p>e약은 뭐예요</p>
         </a>
       </Link>
     </StyledNavigation>
