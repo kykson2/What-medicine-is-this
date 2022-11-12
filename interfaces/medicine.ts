@@ -14,6 +14,10 @@ export interface ImedicineInformation {
   itemSeq: string;
 }
 
+export interface Imedicine {
+  medicine: ImedicineInformation;
+}
+
 export interface ImedicineDetailPersist {
   medicineDetail: ImedicineInformation;
 }

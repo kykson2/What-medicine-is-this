@@ -14,7 +14,7 @@ import {
   formProps,
 } from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
-import StyledMedicineList from "../../styles/StyledMedicineList";
+import StyledSearchForm from "../../styles/StyledSearchForm";
 import StyledSearchPage from "../../styles/StyledSearchPage";
 
 type FormValues = {
@@ -48,7 +48,7 @@ const SearchMedicine: NextPage = () => {
 
   return (
     <StyledSearchPage>
-      <StyledMedicineList>
+      <StyledSearchForm>
         <span className="pageTitle">약 이름으로 검색합니다.</span>
         <form
           onSubmit={handleSubmit((data: formProps) => {
@@ -72,7 +72,7 @@ const SearchMedicine: NextPage = () => {
             <a>처음 화면으로 갈래요</a>
           </Link>
         </div>
-      </StyledMedicineList>
+      </StyledSearchForm>
     </StyledSearchPage>
   );
 };

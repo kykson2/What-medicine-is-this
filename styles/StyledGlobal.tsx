@@ -33,6 +33,8 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     font-family: 'Do Hyeon', sans-serif;
+	background-color: #d4d4d4;
+	
 }
 ol, ul {
 	list-style: none;

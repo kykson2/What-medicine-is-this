@@ -17,6 +17,7 @@ const initialState: ImedicineInformation = {
   seQesitm: "",
   depositMethodQesitm: "",
   itemImage: "",
+  itemSeq: "",
 };
 
 const medicineDetailSlice = createSlice({

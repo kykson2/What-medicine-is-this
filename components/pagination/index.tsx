@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 import React, { useEffect, useState } from "react";
-import { ImedicineList } from "../../interfaces/medicine";
-import Link from "next/link";
-import Image from "next/image";
+import { ImedicineInformation, ImedicineList } from "../../interfaces/medicine";
+import StyledPaginationButton from "../../styles/StyeldPaginationButton";
+import StyledMedicineList from "../../styles/StyledMedicineList";
+import MedicineListItem from "../medicine/MedicineListItem";
 
 const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -23,48 +24,36 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   }, [postsPerPage]);
 
   const paginationBtn = pageArray.map((item: number) => (
-    <button key={item} onClick={() => setCurrentPage(item)}>
-      {item}
-    </button>
+    <li key={item}>
+      <a
+        href=""
+        onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+          e.preventDefault();
+          setCurrentPage(item);
+        }}
+      >
+        {item}
+      </a>
+    </li>
   ));
 
   return (
     <div>
-      {medicineList && <div>{paginationBtn}</div>}
-      {medicineList && medicineList.length ? (
-        medicineList
-          .slice(currentPage * 10 - 10, currentPage * 10)
-          .map((item) => {
-            const itemKey = item.itemImage.substring(
-              item.itemImage.lastIndexOf("/") + 1
-            );
-            return (
-              <li key={item.itemName}>
-                <Link
-                  href={{
-                    pathname: "/medicine/[information]",
-                    query: { medicine: JSON.stringify(item) },
-                  }}
-                  as={`/medicine/${item.itemName}`}
-                >
-                  <p>
-                    {item.itemName}
-
-                    <span>
-                      <Image
-                        src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
-                        alt={item.itemName}
-                        width={100}
-                        height={100}
-                      />
-                    </span>
-                  </p>
-                </Link>
-              </li>
-            );
-          })
-      ) : (
-        <p>검색 결과가 없습니다.</p>
+      <StyledMedicineList>
+        {medicineList && medicineList.length ? (
+          medicineList
+            .slice(currentPage * 10 - 10, currentPage * 10)
+            .map((medicine: ImedicineInformation) => {
+              return (
+                <MedicineListItem key={medicine.itemSeq} medicine={medicine} />
+              );
+            })
+        ) : (
+          <p>검색 결과가 없습니다.</p>
+        )}
+      </StyledMedicineList>
+      {medicineList && (
+        <StyledPaginationButton>{paginationBtn}</StyledPaginationButton>
       )}
     </div>
   );
