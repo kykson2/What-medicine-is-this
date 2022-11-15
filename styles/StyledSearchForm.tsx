@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const StyledSearchForm = styled.div`
-  margin-x: auto;
   padding-top: 120px;
 
   background-color: #fff;
@@ -13,16 +12,18 @@ const StyledSearchForm = styled.div`
   padding-right: 10px;
 
   .pageTitle {
+    margin-left: 10px;
     font-size: 20px;
   }
 
   form {
     display: flex;
     margin-top: 10px;
+    margin-left: 10px;
     margin-bottom: 20px;
 
     .searchBar {
-      width: 300px;
+      width: 100%;
       height: 32px;
       font-size: 15px;
       border: 0;

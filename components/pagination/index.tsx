@@ -30,6 +30,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
         onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
           e.preventDefault();
           setCurrentPage(item);
+          window.scrollTo(0, 0);
         }}
       >
         {item}
