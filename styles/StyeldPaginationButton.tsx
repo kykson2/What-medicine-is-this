@@ -10,11 +10,15 @@ const StyledPaginationButton = styled.ul`
 
   font-size: 20px;
 
-  li {
+  a {
+    color: #849190;
   }
 
-  a {
-    color: #000;
+  .active {
+    a {
+      font-size: 21px;
+      color: #000;
+    }
   }
 `;
 

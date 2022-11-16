@@ -14,11 +14,9 @@ const MedicineList: NextPage<ImedicineList> = ({ medicineList }) => {
     if (medicineList) dispatch(searchMedicineList(medicineList));
   }, [dispatch, medicineList]);
   return (
-    <section>
-      <ul>
-        <Pagination medicineList={medicineList} />
-      </ul>
-    </section>
+    <article>
+      <Pagination medicineList={medicineList} />
+    </article>
   );
 };
 

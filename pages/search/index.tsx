@@ -16,6 +16,7 @@ import {
 import { reset } from "../../store/medicine/medicineSlice";
 import StyledSearchForm from "../../styles/StyledSearchForm";
 import StyledSearchPage from "../../styles/StyledSearchPage";
+import StyledError from "../../styles/StyledError";
 
 type FormValues = {
   searchValue: string;
@@ -59,12 +60,12 @@ const SearchMedicine: NextPage = () => {
             className="searchBar"
             {...register("searchValue", { required: true })}
           />
-          <button className="submitButton" type="submit">
+          <button className="submitIcon" type="submit">
             <Image src={searchIcon} alt="searchIcon"></Image>
           </button>
-          {/* {errors.searchValue?.type === "required" && (
-            <p>검색할 약을 입력해주세요.</p>
-          )} */}
+          {errors.searchValue?.type === "required" && (
+            <StyledError>검색할 약을 입력해주세요.</StyledError>
+          )}
         </form>
         <MedicineList medicineList={medicineList} />
         <div>

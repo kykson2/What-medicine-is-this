@@ -56,7 +56,11 @@ a {
     text-decoration: none; 
     outline: none
 }
-
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 `;
 
 export default StyledGlobal;

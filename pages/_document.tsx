@@ -9,8 +9,8 @@ const Document = () => (
         rel="stylesheet"
       />
     </Head>
+    <title>e약은 뭐예요</title>
     <body>
-      <title>e약은 뭐예요</title>
       <Main />
       <NextScript />
     </body>

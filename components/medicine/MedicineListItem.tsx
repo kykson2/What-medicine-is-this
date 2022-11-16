@@ -18,7 +18,9 @@ const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
             pathname: "/medicine/[information]",
             query: { medicine: JSON.stringify(medicine) },
           }}
-          as={`/medicine/${medicine.itemName}`}
+          as={`/medicine/${medicine.itemName.substring(
+            medicine.itemName.lastIndexOf("%") + 1
+          )}`}
         >
           <StyledListItemInfo>
             {itemKey ? (

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const StyledMedicineList = styled.div`
+const StyledMedicineList = styled.ul`
   max-width: 480px;
   min-width: 375px;
   min-height: 300px;
-  margin-left: 10px;
+  margin: 0 10px;
 
   display: flex;
   flex-direction: column;

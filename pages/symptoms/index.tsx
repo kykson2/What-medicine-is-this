@@ -12,6 +12,14 @@ import {
   formProps,
 } from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
+import StyledSearchPage from "../../styles/StyledSearchPage";
+import {
+  StyledAdrArea,
+  StyledSubSymptomArea,
+  StyledSymptomForm,
+} from "../../styles/StyledSearchForm";
+import StyledButton from "../../styles/StyledButton";
+import StyledError from "../../styles/StyledError";
 
 type FormValues = {
   mainSymptom: string;
@@ -73,75 +81,103 @@ const MySymptoms: NextPage = () => {
 
   const appendHandler = () => {
     const medicineInput = medicineInputRef.current?.value;
-    append({ medicine: medicineInput as string });
+    medicineInput && append({ medicine: medicineInput as string });
   };
 
   return (
-    <div>
-      <h3>증상으로 찾습니다.</h3>
-      <form
-        onSubmit={handleSubmit((data: formProps) => {
-          const { takingMedicine } = getValues();
-          getMedicineList({ data, setMedicineList, dispatch, takingMedicine });
-        })}
-      >
-        <div>주요 증상을 알려주세요</div>
-        <input {...register("mainSymptom", { required: true })} />
-        <input type="submit" />
-        {errors.mainSymptom?.type === "required" && (
-          <p>주요 증상을 입력하세요</p>
-        )}
-        <div>
-          <div>다른 증상도 있으신 가요?</div>
-          <input
-            {...register("subSymptom")}
-            disabled={!watch("subSymptomToggle")}
-          />
-          <input
-            type="checkbox"
-            {...register("subSymptomToggle")}
-            onClick={() => {
-              setValue("subSymptom", "");
-            }}
-          />
-        </div>
-
-        <div>
-          <div>복용 중인 약이 있으신가요?</div>
-          {controlledFields.map((field, index) => {
-            return (
-              <div key={`takingMedicine.${index}.name`}>
-                {field["medicine"]}
-                <button onClick={() => remove(index)}>삭제</button>
-              </div>
-            );
+    <StyledSearchPage>
+      <StyledSymptomForm>
+        <form
+          className="symptoms"
+          onSubmit={handleSubmit((data: formProps) => {
+            const { takingMedicine } = getValues();
+            getMedicineList({
+              data,
+              setMedicineList,
+              dispatch,
+              takingMedicine,
+            });
           })}
+        >
+          <span className="pageTitle">증상으로 찾습니다.</span>
+          <p>주요 증상을 알려주세요</p>
           <input
-            {...register("adr")}
-            ref={medicineInputRef}
-            disabled={!watch("adrToggle")}
+            className="searchBar"
+            {...register("mainSymptom", { required: true })}
           />
-          <input
-            type="checkbox"
-            {...register("adrToggle")}
-            onClick={() => {
-              setValue("adr", "");
-            }}
-          />
+          {errors.mainSymptom?.type === "required" && (
+            <StyledError>주요 증상을 입력하세요</StyledError>
+          )}
+
+          <StyledSubSymptomArea subSymptom={!watch("subSymptomToggle")}>
+            <p>
+              다른 증상도 있으신 가요?{" "}
+              <input
+                type="checkbox"
+                {...register("subSymptomToggle")}
+                onClick={() => {
+                  setValue("subSymptom", "");
+                }}
+              />
+            </p>
+            <input
+              className="searchBar subSymptom"
+              {...register("subSymptom")}
+              disabled={!watch("subSymptomToggle")}
+            />
+          </StyledSubSymptomArea>
+
           <div>
-            <button type="button" onClick={appendHandler}>
-              추가
-            </button>
+            <p>
+              복용 중인 약이 있으신가요?{" "}
+              <input
+                type="checkbox"
+                {...register("adrToggle")}
+                onClick={() => {
+                  setValue("adr", "");
+                }}
+              />
+            </p>
+            <StyledAdrArea adr={!watch("adrToggle")}>
+              {controlledFields.map((field, index) => {
+                return (
+                  <div
+                    key={`takingMedicine.${index}.name`}
+                    className="medicineField"
+                  >
+                    {field["medicine"]}
+                    <StyledButton type="button" onClick={() => remove(index)}>
+                      삭제
+                    </StyledButton>
+                  </div>
+                );
+              })}
+              <div className="adrSearchArea">
+                <input
+                  className="searchBar adr"
+                  {...register("adr")}
+                  ref={medicineInputRef}
+                  disabled={!watch("adrToggle")}
+                />
+
+                <StyledButton type="button" onClick={appendHandler}>
+                  추가
+                </StyledButton>
+              </div>
+            </StyledAdrArea>
           </div>
+          <StyledButton type="submit" className="submit btn" value="검색">
+            검색
+          </StyledButton>
+        </form>
+        <MedicineList medicineList={medicineList} />
+        <div>
+          <Link href={{ pathname: "/" }}>
+            <a>처음 화면으로 갈래요</a>
+          </Link>
         </div>
-      </form>
-      <MedicineList medicineList={medicineList} />
-      <div>
-        <Link href={{ pathname: "/" }}>
-          <a>처음 화면으로 갈래요</a>
-        </Link>
-      </div>
-    </div>
+      </StyledSymptomForm>
+    </StyledSearchPage>
   );
 };
 

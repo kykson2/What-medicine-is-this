@@ -24,7 +24,10 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   }, [postsPerPage]);
 
   const paginationBtn = pageArray.map((item: number) => (
-    <li key={item}>
+    <li
+      key={item}
+      className={"paginationBtn " + (currentPage === item ? "active" : "")}
+    >
       <a
         href=""
         onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -39,7 +42,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   ));
 
   return (
-    <div>
+    <>
       <StyledMedicineList>
         {medicineList && medicineList.length ? (
           medicineList
@@ -56,7 +59,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
       {medicineList && (
         <StyledPaginationButton>{paginationBtn}</StyledPaginationButton>
       )}
-    </div>
+    </>
   );
 };
 
