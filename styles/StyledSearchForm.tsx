@@ -22,7 +22,6 @@ const StyledSearch = styled.div`
   }
 
   form {
-    display: flex;
     margin-top: 10px;
 
     margin-bottom: 20px;
@@ -39,13 +38,22 @@ const StyledSearch = styled.div`
       background-color: #dddddd;
       padding-left: 10px;
     }
-
     .submitIcon {
       margin-left: 5px;
       border: 0;
       background-color: #fff;
       cursor: pointer;
     }
+
+    .searchArea {
+      display: flex;
+    }
+
+    p {
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+
     padding-bottom: 15px;
     border-bottom: 1.5px solid;
   }
@@ -53,6 +61,7 @@ const StyledSearch = styled.div`
 
 export const StyledSymptomForm = styled(StyledSearch)`
   form {
+    display: flex;
     flex-direction: column;
     gap: 15px;
 

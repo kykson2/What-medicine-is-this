@@ -14,7 +14,7 @@ import {
   formProps,
 } from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
-import StyledSearchForm from "../../styles/StyledSearchForm";
+import StyledSearch from "../../styles/StyledSearchForm";
 import StyledSearchPage from "../../styles/StyledSearchPage";
 import StyledError from "../../styles/StyledError";
 
@@ -49,23 +49,27 @@ const SearchMedicine: NextPage = () => {
 
   return (
     <StyledSearchPage>
-      <StyledSearchForm>
+      <StyledSearch>
         <span className="pageTitle">약 이름으로 검색합니다.</span>
         <form
           onSubmit={handleSubmit((data: formProps) => {
             getMedicineList({ data, setMedicineList, dispatch });
           })}
         >
-          <input
-            className="searchBar"
-            {...register("searchValue", { required: true })}
-          />
-          <button className="submitIcon" type="submit">
-            <Image src={searchIcon} alt="searchIcon"></Image>
-          </button>
-          {errors.searchValue?.type === "required" && (
-            <StyledError>검색할 약을 입력해주세요.</StyledError>
-          )}
+          <div className="searchArea">
+            <input
+              className="searchBar"
+              {...register("searchValue", { required: true })}
+            />
+            <button className="submitIcon" type="submit">
+              <Image src={searchIcon} alt="searchIcon"></Image>
+            </button>
+          </div>
+          <div>
+            {errors.searchValue?.type === "required" && (
+              <StyledError>검색할 약을 입력해주세요.</StyledError>
+            )}
+          </div>
         </form>
         <MedicineList medicineList={medicineList} />
         <div>
@@ -73,7 +77,7 @@ const SearchMedicine: NextPage = () => {
             <a>처음 화면으로 갈래요</a>
           </Link>
         </div>
-      </StyledSearchForm>
+      </StyledSearch>
     </StyledSearchPage>
   );
 };
