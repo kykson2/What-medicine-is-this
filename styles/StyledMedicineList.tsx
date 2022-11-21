@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 const StyledMedicineList = styled.ul`
   max-width: 480px;
-  min-width: 375px;
+
+  width: 400px;
   min-height: 300px;
-  margin: 0 10px;
+  padding: 0 10px;
 
   display: flex;
   flex-direction: column;

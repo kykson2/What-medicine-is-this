@@ -16,13 +16,14 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   const [lastPage, setLastPage] = useState<number>(1);
   const [pageNumber, setPageNumber] = useState<number>(0);
 
-  // 페이지 수
+  // 총 페이지 수
   useEffect(() => {
     if (medicineList) {
       setPostsPerPage(Math.ceil(medicineList.length / 10));
     }
   }, [medicineList]);
 
+  // 페이지는 5개씩 보여줌
   useEffect(() => {
     setPageArray(
       Array(5)
@@ -68,42 +69,41 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
           <p>검색 결과가 없습니다.</p>
         )}
       </StyledMedicineList>
-      <div>
-        {medicineList && (
-          <StyledPaginationButton>
-            {pageNumber !== 0 && (
-              <StyledButton
-                className="left"
-                type="button"
-                onClick={() => setPageNumber(pageNumber - 1)}
-              >
-                <Image
-                  src={leftArrow}
-                  alt="leftArrow"
-                  width={"25px"}
-                  height={"25px"}
-                ></Image>
-              </StyledButton>
-            )}
-            <div>{paginationBtn}</div>
 
-            {pageNumber * 5 + 5 < postsPerPage && (
-              <StyledButton
-                className="right"
-                type="button"
-                onClick={() => setPageNumber(pageNumber + 1)}
-              >
-                <Image
-                  src={rightArrow}
-                  alt="rightArrow"
-                  width={"25px"}
-                  height={"25px"}
-                ></Image>
-              </StyledButton>
-            )}
-          </StyledPaginationButton>
-        )}
-      </div>
+      {medicineList && (
+        <StyledPaginationButton>
+          {pageNumber !== 0 && (
+            <StyledButton
+              className="left"
+              type="button"
+              onClick={() => setPageNumber(pageNumber - 1)}
+            >
+              <Image
+                src={leftArrow}
+                alt="leftArrow"
+                width={"25px"}
+                height={"25px"}
+              ></Image>
+            </StyledButton>
+          )}
+          <div>{paginationBtn}</div>
+
+          {pageNumber * 5 + 5 < postsPerPage && (
+            <StyledButton
+              className="right"
+              type="button"
+              onClick={() => setPageNumber(pageNumber + 1)}
+            >
+              <Image
+                src={rightArrow}
+                alt="rightArrow"
+                width={"25px"}
+                height={"25px"}
+              ></Image>
+            </StyledButton>
+          )}
+        </StyledPaginationButton>
+      )}
     </>
   );
 };

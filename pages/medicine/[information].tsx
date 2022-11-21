@@ -10,6 +10,7 @@ import { medicineDetail } from "../../store/medicine/medicineDetailSlice";
 import { useEffect, useState } from "react";
 
 import drugIcon from "../../icon/drug_icon.svg";
+import StyledMedicineDetail from "../../styles/StyledMedicineDetail";
 
 const Information: NextPage = () => {
   const router = useRouter();
@@ -59,66 +60,71 @@ const Information: NextPage = () => {
     console.log(query.itemImage);
   }, [query.itemImage]);
   return (
-    <section>
+    <StyledMedicineDetail>
       {/* 이미지 */}
-      {query.itemImage ? (
-        <Image
-          src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
-          alt={query.itemName}
-          width={100}
-          height={100}
-        ></Image>
-      ) : (
-        <Image src={drugIcon} alt={query.itemName}></Image>
-      )}
-
-      {/* 약 이름 */}
-      {query.itemName && <h2>{query.itemName}</h2>}
-
-      {/* 복용 */}
-      {query.useMethodQesitm && (
-        <div>
-          <h4>복용 방법</h4>
-          <span>{query.useMethodQesitm.replace(regex, " ")}</span>
-        </div>
-      )}
-
-      {/* 효과 */}
-      {query.efcyQesitm && (
-        <div>
-          <h4>효과</h4>
-          <p>{query.efcyQesitm.replace(regex, " ")}</p>
-        </div>
-      )}
-
-      {/* 주의사항 */}
-      <div>
-        {query.intrcQesitm && (
-          <>
-            <h4>복용 시 주의해야할 약</h4>
-            <p>{query.intrcQesitm.replace(regex, " ")}</p>
-          </>
-        )}
-        {query.seQesitm && (
-          <>
-            <h4>복용 시 주의해야할 이상반응</h4>
-            <p>{query.seQesitm.replace(regex, " ")}</p>
-          </>
+      <div className="medicineImage">
+        {query.itemImage ? (
+          <Image
+            src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
+            alt={query.itemName}
+            width={250}
+            height={250}
+          ></Image>
+        ) : (
+          <Image src={drugIcon} alt={query.itemName}></Image>
         )}
       </div>
+      <div className="description">
+        {/* 약 이름 */}
+        {query.itemName && <h2>{query.itemName}</h2>}
 
-      {/* 보관방법 */}
-      {query.depositMethodQesitm && (
+        {/* 복용 */}
+        {query.useMethodQesitm && (
+          <div>
+            <h4>복용 방법</h4>
+            <p>{query.useMethodQesitm.replace(regex, " ")}</p>
+          </div>
+        )}
+
+        {/* 효과 */}
+        {query.efcyQesitm && (
+          <div>
+            <h4>효과</h4>
+            <p>{query.efcyQesitm.replace(regex, " ")}</p>
+          </div>
+        )}
+
+        {/* 주의사항 */}
         <div>
-          <h4>보관 방법</h4>
-          <p>{query.depositMethodQesitm.replace(regex, " ")}</p>
+          {query.intrcQesitm && (
+            <>
+              <h4>복용 시 주의해야할 약</h4>
+              <p>{query.intrcQesitm.replace(regex, " ")}</p>
+            </>
+          )}
         </div>
-      )}
+        <div>
+          {query.seQesitm && (
+            <>
+              <h4>복용 시 주의해야할 이상반응</h4>
+              <p>{query.seQesitm.replace(regex, " ")}</p>
+            </>
+          )}
+        </div>
 
-      <button type="button" onClick={() => router.back()}>
-        뒤로가기
-      </button>
-    </section>
+        {/* 보관방법 */}
+        {query.depositMethodQesitm && (
+          <div>
+            <h4>보관 방법</h4>
+            <p>{query.depositMethodQesitm.replace(regex, " ")}</p>
+          </div>
+        )}
+
+        <button type="button" onClick={() => router.back()}>
+          뒤로가기
+        </button>
+      </div>
+    </StyledMedicineDetail>
   );
 };
 

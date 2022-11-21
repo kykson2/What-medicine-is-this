@@ -11,7 +11,7 @@ const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
     medicine.itemImage &&
     medicine.itemImage.substring(medicine.itemImage.lastIndexOf("/") + 1);
   return (
-    <>
+    <div>
       <StyledMedicineListItem key={medicine.itemName}>
         <Link
           href={{
@@ -23,21 +23,23 @@ const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
           )}`}
         >
           <StyledListItemInfo>
-            {itemKey ? (
-              <Image
-                src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
-                alt={medicine.itemName}
-                width={100}
-                height={100}
-              ></Image>
-            ) : (
-              <Image
-                src={removeIcon}
-                alt={medicine.itemName}
-                width={100}
-                height={100}
-              ></Image>
-            )}
+            <div className="medicineImage">
+              {itemKey ? (
+                <Image
+                  src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
+                  alt={medicine.itemName}
+                  width={100}
+                  height={100}
+                ></Image>
+              ) : (
+                <Image
+                  src={removeIcon}
+                  alt={medicine.itemName}
+                  width={100}
+                  height={100}
+                ></Image>
+              )}
+            </div>
 
             <div className="medicineName">
               <span>{medicine.itemName}</span>
@@ -51,7 +53,7 @@ const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
           </StyledListItemInfo>
         </Link>
       </StyledMedicineListItem>
-    </>
+    </div>
   );
 };
 
