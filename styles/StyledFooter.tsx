@@ -1,29 +1,84 @@
 import styled from "styled-components";
+import StyledButton from "./StyledButton";
 
 const StyledFooter = styled.footer`
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  padding-top: 20px;
+  border-top: 1px solid #ddd;
+
+  padding-top: 60px;
   background-color: #d4d4d4;
-  h3 {
-    font-size: 40px;
-    margin-bottom: 10px;
-  }
 
   .footer-distributed {
-    width: 800px;
+    width: 90%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+
+    .footer-left {
+      h3 {
+        font-size: 40px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+
+    .footer-right {
+      p {
+        margin-bottom: 15px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .email {
+          height: 30px;
+          border: 0;
+          border-radius: 5px;
+
+          padding-left: 10px;
+        }
+
+        textarea {
+          height: 150px;
+
+          border: 0;
+          border-radius: 5px;
+
+          padding-top: 10px;
+          padding-left: 10px;
+
+          resize: none;
+        }
+      }
+    }
   }
 
   .link {
     display: flex;
-    margin-top: 20px;
-    gap: 10px;
+    margin-top: 40px;
+    gap: 15px;
   }
   padding-bottom: 40px;
+`;
+
+export const StyledFooterButton = styled(StyledButton)`
+  width: 100px;
+  background-color: #aaa;
+
+  &:hover {
+    background-color: #999;
+  }
 `;
 
 export default StyledFooter;

@@ -61,6 +61,14 @@ button {
   -moz-appearance: none;
   appearance: none;
 }
+
+input:focus {
+	outline: none;
+}
+
+textarea:focus {
+	outline: none;
+}
 `;
 
 export default StyledGlobal;

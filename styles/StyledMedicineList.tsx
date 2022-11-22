@@ -3,7 +3,6 @@ import styled from "styled-components";
 const StyledMedicineList = styled.ul`
   max-width: 480px;
 
-  width: 400px;
   min-height: 300px;
   padding: 0 10px;
 

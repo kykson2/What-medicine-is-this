@@ -4,11 +4,12 @@ import Link from "next/link";
 import instagram from "../../icon/instagram_icon.svg";
 import github from "../../icon/github_icon.svg";
 import tistory from "../../icon/tistory_icon.svg";
-import StyledFooter from "../../styles/StyledFooter";
+import StyledFooter, { StyledFooterButton } from "../../styles/StyledFooter";
 import { SubmitHandler, useForm } from "react-hook-form";
 import emailjs from "emailjs-com";
 import axios from "axios";
 import sendEmail from "../sendEmail/sendEmail";
+import StyledButton from "../../styles/StyledButton";
 
 interface Formvalues {
   email: string;
@@ -55,19 +56,6 @@ const Footer: NextPage = () => {
     },
   ];
 
-  const linkArea = link.map((item) => (
-    <p key={item.alt}>
-      <Link href={item.address}>
-        <Image
-          src={item.src}
-          alt={item.alt}
-          width={item.width}
-          height={item.height}
-        ></Image>
-      </Link>
-    </p>
-  ));
-
   return (
     <StyledFooter>
       <div className="footer-distributed">
@@ -83,13 +71,33 @@ const Footer: NextPage = () => {
               sendEmailHandler(data)
             )}
           >
-            <input {...register("email")} placeholder="Email" />
+            <input
+              type="text"
+              className="email"
+              {...register("email")}
+              placeholder="Email"
+            />
             <textarea {...register("message")} placeholder="Message"></textarea>
-            <button type="submit">Send</button>
+            <StyledFooterButton type="submit">Send</StyledFooterButton>
           </form>
         </div>
       </div>
-      {/* <div className="link">{linkArea}</div> */}
+      <div className="link">
+        {link.map((item) => (
+          <p key={item.alt}>
+            <Link href={item.address} key={item.alt}>
+              <a>
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={item.width}
+                  height={item.height}
+                ></Image>
+              </a>
+            </Link>
+          </p>
+        ))}
+      </div>
     </StyledFooter>
   );
 };

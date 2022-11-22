@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledMedicineDetail = styled.main`
   padding-top: 120px;
 
-  width: 420px;
+  max-width: 420px;
   min-height: 600px;
   font-size: 20px;
 

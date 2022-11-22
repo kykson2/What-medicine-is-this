@@ -40,10 +40,23 @@ const StyledSearch = styled.div`
       padding-left: 10px;
     }
     .submitIcon {
-      margin-left: 5px;
+      display: flex;
+      width: 10%;
+      height: 35px;
+      align-items: center;
+
       border: 0;
+      border-radius: 5px;
       background-color: #fff;
       cursor: pointer;
+
+      img {
+        margin: 0 auto;
+      }
+
+      &:hover {
+        background-color: #ccc;
+      }
     }
 
     .searchArea {

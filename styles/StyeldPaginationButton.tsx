@@ -46,6 +46,7 @@ const StyledPaginationButton = styled.ul`
     width: 88px;
     display: flex;
     gap: 10px;
+    height: 21px;
   }
 `;
 
