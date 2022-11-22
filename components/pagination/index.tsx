@@ -13,7 +13,6 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage, setPostsPerPage] = useState<number>(0);
   const [pageArray, setPageArray] = useState<number[]>([]);
-  const [lastPage, setLastPage] = useState<number>(1);
   const [pageNumber, setPageNumber] = useState<number>(0);
 
   // 총 페이지 수
@@ -32,11 +31,11 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
     );
   }, [postsPerPage, pageNumber]);
 
-  const paginationBtn = pageArray.map((item: number) => (
-    <>
-      {postsPerPage >= item && (
+  const paginationBtn = pageArray.map((item: number): false | JSX.Element => {
+    return (
+      postsPerPage >= item && (
         <li
-          key={item}
+          key={medicineList[item].itemSeq}
           className={"paginationBtn " + (currentPage === item ? "active" : "")}
         >
           <a
@@ -50,9 +49,9 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
             {item}
           </a>
         </li>
-      )}
-    </>
-  ));
+      )
+    );
+  });
 
   return (
     <>

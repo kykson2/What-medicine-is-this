@@ -14,7 +14,7 @@ import {
   formProps,
 } from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
-import StyledSearch from "../../styles/StyledSearchForm";
+import StyledSearch from "../../styles/StyledSearch";
 import StyledSearchPage from "../../styles/StyledSearchPage";
 import StyledError from "../../styles/StyledError";
 

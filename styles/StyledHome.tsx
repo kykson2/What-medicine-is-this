@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const StyledHome = styled.div`
+const StyledHome = styled.section`
   height: 100vh;
-  background-color: #ededed;
+
   display: flex;
   align-items: center;
   justify-content: center;

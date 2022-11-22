@@ -17,7 +17,7 @@ import {
   StyledAdrArea,
   StyledSubSymptomArea,
   StyledSymptomForm,
-} from "../../styles/StyledSearchForm";
+} from "../../styles/StyledSearch";
 import StyledButton from "../../styles/StyledButton";
 import StyledError from "../../styles/StyledError";
 

@@ -15,6 +15,7 @@ const StyledSearch = styled.div`
 
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 30px;
 
   .pageTitle {
     margin-left: 10px;
