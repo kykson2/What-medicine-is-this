@@ -33,16 +33,21 @@ const StyledFooter = styled.footer`
     }
 
     .footer-right {
-      p {
-        margin-bottom: 15px;
-      }
+      display: flex;
+      flex-direction: column;
+      float: left;
+
       form {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 15px;
 
         .email {
+          max-width: 400px;
+          min-width: 200px;
           height: 30px;
+          width: 100%;
           border: 0;
           border-radius: 5px;
 
@@ -51,6 +56,8 @@ const StyledFooter = styled.footer`
 
         textarea {
           height: 150px;
+          width: 100%;
+          max-width: 400px;
 
           border: 0;
           border-radius: 5px;
@@ -60,6 +67,19 @@ const StyledFooter = styled.footer`
 
           resize: none;
         }
+        p {
+          max-width: 400px;
+          width: 100%;
+          margin-bottom: 15px;
+        }
+      }
+    }
+    @media screen and (min-width: 900px) {
+      flex-direction: row;
+      justify-content: space-evenly;
+
+      .footer-right {
+        width: 350px;
       }
     }
   }
@@ -70,6 +90,11 @@ const StyledFooter = styled.footer`
     gap: 15px;
   }
   padding-bottom: 40px;
+
+  @media screen and (max-width: 420px) {
+    max-width: 420px;
+    width: 100vh;
+  }
 `;
 
 export const StyledFooterButton = styled(StyledButton)`

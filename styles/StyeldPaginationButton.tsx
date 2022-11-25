@@ -47,6 +47,8 @@ const StyledPaginationButton = styled.ul`
     display: flex;
     gap: 10px;
     height: 21px;
+
+    justify-content: center;
   }
 `;
 

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import drugIcon from "../../icon/drug_icon.svg";
 import StyledMedicineDetail from "../../styles/StyledMedicineDetail";
+import StyledButton from "../../styles/StyledButton";
 
 const Information: NextPage = () => {
   const router = useRouter();
@@ -120,9 +121,9 @@ const Information: NextPage = () => {
           </div>
         )}
 
-        <button type="button" onClick={() => router.back()}>
+        <StyledButton type="button" onClick={() => router.back()}>
           뒤로가기
-        </button>
+        </StyledButton>
       </div>
     </StyledMedicineDetail>
   );

@@ -64,13 +64,12 @@ const Footer: NextPage = () => {
           <p>김관우의 포트폴리오 © 2022</p>
         </div>
         <div className="footer-right">
-          <p>Contact Us</p>
-
           <form
             onSubmit={handleSubmit((data: Formvalues) =>
               sendEmailHandler(data)
             )}
           >
+            <p>Contact Us</p>
             <input
               type="text"
               className="email"
