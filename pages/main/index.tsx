@@ -1,12 +1,9 @@
 import type { NextPage } from "next";
 
 import { useRouter } from "next/router";
-import StyledMainButtonWrap from "../../styles/StyledMainButtonWrap";
-import StyledMain from "../../styles/StyledMain";
-import {
-  StyledNameButton,
-  StyledSymptomButton,
-} from "../../styles/StyledMainButton";
+import StyledMainButtonWrap from "../../styles/main/StyledMainButtonWrap";
+import StyledMain from "../../styles/main/StyledMain";
+import { StyledNameButton, StyledSymptomButton } from "../../styles/button/StyledMainButton";
 
 const Main: NextPage = () => {
   const router = useRouter();

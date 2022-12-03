@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import { ImedicineInformation, ImedicineList } from "../../interfaces/medicine";
-import StyledPaginationButton from "../../styles/StyeldPaginationButton";
-import StyledMedicineList from "../../styles/StyledMedicineList";
+import StyledPaginationButton from "../../styles/button/StyeldPaginationButton";
+import StyledMedicineList from "../../styles/list/StyledMedicineList";
 import MedicineListItem from "../medicine/MedicineListItem";
 import leftArrow from "../../icon/left_arrow_icon.svg";
 import rightArrow from "../../icon/right_arrow_icon.svg";
 import Image from "next/image";
-import StyledButton from "../../styles/StyledButton";
+import StyledButton from "../../styles/button/StyledButton";
 
 const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -35,7 +35,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
     return (
       postsPerPage >= item && (
         <li
-          key={medicineList[item].itemSeq}
+          key={medicineList[item].itemName}
           className={"paginationBtn " + (currentPage === item ? "active" : "")}
         >
           <a
@@ -60,9 +60,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
           medicineList
             .slice(currentPage * 10 - 10, currentPage * 10)
             .map((medicine: ImedicineInformation) => {
-              return (
-                <MedicineListItem key={medicine.itemSeq} medicine={medicine} />
-              );
+              return <MedicineListItem key={medicine.itemSeq} medicine={medicine} />;
             })
         ) : (
           <p>검색 결과가 없습니다.</p>
@@ -77,12 +75,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
               type="button"
               onClick={() => setPageNumber(pageNumber - 1)}
             >
-              <Image
-                src={leftArrow}
-                alt="leftArrow"
-                width={"25px"}
-                height={"25px"}
-              ></Image>
+              <Image src={leftArrow} alt="leftArrow" width={"25px"} height={"25px"}></Image>
             </StyledButton>
           )}
           <div>{paginationBtn}</div>
@@ -93,12 +86,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
               type="button"
               onClick={() => setPageNumber(pageNumber + 1)}
             >
-              <Image
-                src={rightArrow}
-                alt="rightArrow"
-                width={"25px"}
-                height={"25px"}
-              ></Image>
+              <Image src={rightArrow} alt="rightArrow" width={"25px"} height={"25px"}></Image>
             </StyledButton>
           )}
         </StyledPaginationButton>

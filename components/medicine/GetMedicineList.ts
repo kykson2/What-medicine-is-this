@@ -11,13 +11,8 @@ const GetMedicineList = async ({
   takingMedicine,
 }: IsearchProps): Promise<void> => {
   dispatch(reset());
-  const url =
-    "http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList";
-  let queryParams =
-    "?" +
-    encodeURIComponent("serviceKey") +
-    "=" +
-    process.env.NEXT_PUBLIC_API_KEY;
+  const url = "http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList";
+  let queryParams = "?" + encodeURIComponent("serviceKey") + "=" + process.env.NEXT_PUBLIC_API_KEY;
 
   queryParams += "&";
 
@@ -37,21 +32,14 @@ const GetMedicineList = async ({
       ? encodeURIComponent(`${data.mainSymptom as string}`)
       : encodeURIComponent("");
 
-  queryParams +=
-    "&" + encodeURIComponent("type") + "=" + encodeURIComponent("json");
+  queryParams += "&" + encodeURIComponent("type") + "=" + encodeURIComponent("json");
 
-  queryParams +=
-    "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("100");
+  queryParams += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("100");
 
   const response: Response = await fetch(url + queryParams);
   const list: IapiType = await response.json();
 
-  filterdMedicineList(
-    list.body.items,
-    setMedicineList,
-    data.subSymptom,
-    takingMedicine
-  );
+  filterdMedicineList(list.body.items, setMedicineList, data.subSymptom, takingMedicine);
 };
 
 export default GetMedicineList;

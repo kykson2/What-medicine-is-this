@@ -4,12 +4,9 @@ import Link from "next/link";
 import instagram from "../../icon/instagram_icon.svg";
 import github from "../../icon/github_icon.svg";
 import tistory from "../../icon/tistory_icon.svg";
-import StyledFooter, { StyledFooterButton } from "../../styles/StyledFooter";
+import StyledFooter, { StyledFooterButton } from "../../styles/footer/StyledFooter";
 import { SubmitHandler, useForm } from "react-hook-form";
-import emailjs from "emailjs-com";
-import axios from "axios";
 import sendEmail from "../sendEmail/sendEmail";
-import StyledButton from "../../styles/StyledButton";
 
 interface Formvalues {
   email: string;
@@ -17,13 +14,12 @@ interface Formvalues {
 }
 
 const Footer: NextPage = () => {
-  const { register, handleSubmit, formState, reset, resetField } =
-    useForm<Formvalues>({
-      defaultValues: {
-        email: "",
-        message: "",
-      },
-    });
+  const { register, handleSubmit, resetField } = useForm<Formvalues>({
+    defaultValues: {
+      email: "",
+      message: "",
+    },
+  });
 
   const sendEmailHandler: SubmitHandler<Formvalues> = (data) => {
     sendEmail(data);
@@ -64,18 +60,9 @@ const Footer: NextPage = () => {
           <p>김관우의 포트폴리오 © 2022</p>
         </div>
         <div className="footer-right">
-          <form
-            onSubmit={handleSubmit((data: Formvalues) =>
-              sendEmailHandler(data)
-            )}
-          >
+          <form onSubmit={handleSubmit((data: Formvalues) => sendEmailHandler(data))}>
             <p>Contact Us</p>
-            <input
-              type="text"
-              className="email"
-              {...register("email")}
-              placeholder="Email"
-            />
+            <input type="text" className="email" {...register("email")} placeholder="Email" />
             <textarea {...register("message")} placeholder="Message"></textarea>
             <StyledFooterButton type="submit">Send</StyledFooterButton>
           </form>

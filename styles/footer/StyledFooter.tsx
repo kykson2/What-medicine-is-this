@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import StyledButton from "./StyledButton";
+import StyledButton from "../button/StyledButton";
 
 const StyledFooter = styled.footer`
   width: 100%;

@@ -2,14 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import medicineListReducer from "./medicine/medicineSlice";
 import medicineDetailReducer from "./medicine/medicineDetailSlice";
-import {
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
@@ -27,10 +20,7 @@ const createNoopStorage = () => {
   };
 };
 
-const storage =
-  typeof window !== "undefined"
-    ? createWebStorage("local")
-    : createNoopStorage();
+const storage = typeof window !== "undefined" ? createWebStorage("local") : createNoopStorage();
 
 const persistConfig = {
   key: "root",

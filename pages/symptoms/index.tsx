@@ -2,23 +2,19 @@ import type { NextPage } from "next";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useForm, useFieldArray } from "react-hook-form";
-import getMedicineList from "../../components/medicine/getMedicineList";
+import getMedicineList from "../../components/medicine/GetMedicineList";
 import MedicineList from "../medicine/MedicineList";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  ImedicineList,
-  ImedicineInformation,
-  formProps,
-} from "../../interfaces/medicine";
+import { ImedicineList, ImedicineInformation, formProps } from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
-import StyledSearchPage from "../../styles/StyledSearchPage";
+import StyledSearchPage from "../../styles/search/StyledSearchPage";
 import {
   StyledAdrArea,
   StyledSubSymptomArea,
   StyledSymptomForm,
-} from "../../styles/StyledSearch";
-import StyledButton from "../../styles/StyledButton";
+} from "../../styles/search/StyledSearch";
+import StyledButton from "../../styles/button/StyledButton";
 import StyledError from "../../styles/StyledError";
 
 type FormValues = {
@@ -33,9 +29,7 @@ type FormValues = {
 const MySymptoms: NextPage = () => {
   const dispatch = useDispatch();
   const [medicineList, setMedicineList] = useState<ImedicineInformation[]>([]);
-  const searchMedicineList = useSelector(
-    (state: ImedicineList) => state.medicineList
-  );
+  const searchMedicineList = useSelector((state: ImedicineList) => state.medicineList);
 
   const medicineInputRef = useRef<HTMLInputElement>(null);
 
@@ -101,10 +95,7 @@ const MySymptoms: NextPage = () => {
         >
           <span className="pageTitle">증상으로 찾습니다.</span>
           <p>주요 증상을 알려주세요</p>
-          <input
-            className="searchBar"
-            {...register("mainSymptom", { required: true })}
-          />
+          <input className="searchBar" {...register("mainSymptom", { required: true })} />
           {errors.mainSymptom?.type === "required" && (
             <StyledError>주요 증상을 입력하세요</StyledError>
           )}
@@ -141,10 +132,7 @@ const MySymptoms: NextPage = () => {
             <StyledAdrArea adr={!watch("adrToggle")}>
               {controlledFields.map((field, index) => {
                 return (
-                  <div
-                    key={`takingMedicine.${index}.name`}
-                    className="medicineField"
-                  >
+                  <div key={`takingMedicine.${index}.name`} className="medicineField">
                     {field["medicine"]}
                     <StyledButton type="button" onClick={() => remove(index)}>
                       삭제

@@ -4,7 +4,7 @@ import Pagination from "../../components/pagination";
 
 import { ImedicineList } from "../../interfaces/medicine";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { searchMedicineList } from "../../store/medicine/medicineSlice";
 

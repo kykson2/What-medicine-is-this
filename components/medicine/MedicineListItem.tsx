@@ -1,15 +1,14 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { Imedicine, ImedicineInformation } from "../../interfaces/medicine";
+import { Imedicine } from "../../interfaces/medicine";
 import Image from "next/image";
 import removeIcon from "../../icon/remove_icon.svg";
-import StyledMedicineListItem from "../../styles/StyledMedicineListItem";
-import StyledListItemInfo from "../../styles/StyledListItemInfo";
+import StyledMedicineListItem from "../../styles/list/StyledMedicineListItem";
+import StyledListItemInfo from "../../styles/list/StyledListItemInfo";
 
 const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
   const itemKey =
-    medicine.itemImage &&
-    medicine.itemImage.substring(medicine.itemImage.lastIndexOf("/") + 1);
+    medicine.itemImage && medicine.itemImage.substring(medicine.itemImage.lastIndexOf("/") + 1);
   return (
     <div>
       <StyledMedicineListItem key={medicine.itemName}>
@@ -18,9 +17,7 @@ const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
             pathname: "/medicine/[information]",
             query: { medicine: JSON.stringify(medicine) },
           }}
-          as={`/medicine/${medicine.itemName.substring(
-            medicine.itemName.lastIndexOf("%") + 1
-          )}`}
+          as={`/medicine/${medicine.itemName.substring(medicine.itemName.lastIndexOf("%") + 1)}`}
         >
           <StyledListItemInfo>
             <div className="medicineImage">
@@ -32,12 +29,7 @@ const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
                   height={100}
                 ></Image>
               ) : (
-                <Image
-                  src={removeIcon}
-                  alt={medicine.itemName}
-                  width={100}
-                  height={100}
-                ></Image>
+                <Image src={removeIcon} alt={medicine.itemName} width={100} height={100}></Image>
               )}
             </div>
 

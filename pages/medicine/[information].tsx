@@ -1,17 +1,14 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import {
-  ImedicineDetailPersist,
-  ImedicineInformation,
-} from "../../interfaces/medicine";
+import { ImedicineDetailPersist, ImedicineInformation } from "../../interfaces/medicine";
 import { useDispatch, useSelector } from "react-redux";
 import { medicineDetail } from "../../store/medicine/medicineDetailSlice";
 import { useEffect, useState } from "react";
 
 import drugIcon from "../../icon/drug_icon.svg";
-import StyledMedicineDetail from "../../styles/StyledMedicineDetail";
-import StyledButton from "../../styles/StyledButton";
+import StyledMedicineDetail from "../../styles/detail/StyledMedicineDetail";
+import StyledButton from "../../styles/button/StyledButton";
 
 const Information: NextPage = () => {
   const router = useRouter();
@@ -31,11 +28,9 @@ const Information: NextPage = () => {
     itemSeq: "",
   });
 
-  const history: ImedicineInformation = useSelector(
-    (state: ImedicineDetailPersist) => {
-      return state.medicineDetail;
-    }
-  );
+  const history: ImedicineInformation = useSelector((state: ImedicineDetailPersist) => {
+    return state.medicineDetail;
+  });
 
   // 라우터 통해서 약 정보 가져올 때
   useEffect(() => {
@@ -54,8 +49,7 @@ const Information: NextPage = () => {
 
   const regex = /(:?<|>|p|n|\/)/g;
   const itemKey =
-    query.itemImage &&
-    query.itemImage.substring(query.itemImage.lastIndexOf("/") + 1);
+    query.itemImage && query.itemImage.substring(query.itemImage.lastIndexOf("/") + 1);
 
   useEffect(() => {
     console.log(query.itemImage);

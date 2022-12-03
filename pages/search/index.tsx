@@ -3,19 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import getMedicineList from "../../components/medicine/getMedicineList";
+import getMedicineList from "../../components/medicine/GetMedicineList";
 import MedicineList from "../medicine/MedicineList";
 import searchIcon from "../../icon/search_icon.svg";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  ImedicineList,
-  ImedicineInformation,
-  formProps,
-} from "../../interfaces/medicine";
+import { ImedicineList, ImedicineInformation, formProps } from "../../interfaces/medicine";
 import { reset } from "../../store/medicine/medicineSlice";
-import StyledSearch from "../../styles/StyledSearch";
-import StyledSearchPage from "../../styles/StyledSearchPage";
+import StyledSearch from "../../styles/search/StyledSearch";
+import StyledSearchPage from "../../styles/search/StyledSearchPage";
 import StyledError from "../../styles/StyledError";
 
 type FormValues = {
@@ -25,9 +21,7 @@ type FormValues = {
 const SearchMedicine: NextPage = () => {
   const dispatch = useDispatch();
   const [medicineList, setMedicineList] = useState<ImedicineInformation[]>([]);
-  const searchMedicineList = useSelector(
-    (state: ImedicineList) => state.medicineList
-  );
+  const searchMedicineList = useSelector((state: ImedicineList) => state.medicineList);
 
   // 새로고침 시  검색했던 기록이 있으면 검색결과 가져옴
   useEffect(() => {
@@ -57,10 +51,7 @@ const SearchMedicine: NextPage = () => {
           })}
         >
           <div className="searchArea">
-            <input
-              className="searchBar"
-              {...register("searchValue", { required: true })}
-            />
+            <input className="searchBar" {...register("searchValue", { required: true })} />
             <button className="submitIcon" type="submit">
               <Image src={searchIcon} alt="searchIcon"></Image>
             </button>

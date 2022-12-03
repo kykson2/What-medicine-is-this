@@ -1,4 +1,4 @@
-import { ImedicineInformation, ImedicineList } from "../../interfaces/medicine";
+import { ImedicineInformation } from "../../interfaces/medicine";
 
 const filterdMedicineList = (
   medicineList: ImedicineInformation[],
