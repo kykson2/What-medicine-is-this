@@ -34,10 +34,7 @@ const Pagination: NextPage<ImedicineList> = ({ medicineList }) => {
   const paginationBtn = pageArray.map((item: number): false | JSX.Element => {
     return (
       postsPerPage >= item && (
-        <li
-          key={medicineList[item].itemName}
-          className={"paginationBtn " + (currentPage === item ? "active" : "")}
-        >
+        <li key={item} className={"paginationBtn " + (currentPage === item ? "active" : "")}>
           <a
             href=""
             onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
