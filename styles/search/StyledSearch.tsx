@@ -30,7 +30,7 @@ const StyledSearch = styled.div`
     .searchBar {
       width: 90%;
       height: 32px;
-      font-size: 15px;
+      font-size: 18px;
       border: 0;
       border-radius: 10px;
       outline: none;
