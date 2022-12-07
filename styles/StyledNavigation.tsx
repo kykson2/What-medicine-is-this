@@ -4,9 +4,7 @@ const StyledNavigation = styled.nav`
   position: fixed;
 
   display: flex;
-  align-items: center;
-
-  padding-left: 10px;
+  justify-content: center;
 
   width: 100%;
   height: 80px;

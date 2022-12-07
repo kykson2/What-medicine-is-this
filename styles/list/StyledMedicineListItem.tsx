@@ -5,6 +5,8 @@ const StyledMedicineListItem = styled.li`
   img {
     min-width: 100px;
     min-height: 100px;
+
+    border-radius: 7%;
   }
   .medicineName {
     max-width: 270px;

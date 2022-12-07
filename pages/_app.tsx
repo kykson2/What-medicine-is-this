@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
           rel="stylesheet"
         />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
         <title>e약은 뭐예요</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
