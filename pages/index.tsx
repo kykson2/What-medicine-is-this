@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
-import Nav from "../components/layout/Navbar";
+import StyledHome from "../styles/StyledHome";
 import Main from "./main";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <StyledHome>
       <Main></Main>
-    </div>
+    </StyledHome>
   );
 };
 
