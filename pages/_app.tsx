@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="https://www.whatmedicineisthis.info/favicon.ico"
+          href="http://www.whatmedicineisthis.info/favicon.ico"
         />
       </Head>
       <Provider store={store}>
