@@ -9,6 +9,7 @@ import StyledListItemInfo from "../../styles/list/StyledListItemInfo";
 const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
   const itemKey =
     medicine.itemImage && medicine.itemImage.substring(medicine.itemImage.lastIndexOf("/") + 1);
+
   return (
     <div>
       <StyledMedicineListItem key={medicine.itemName}>
@@ -22,12 +23,12 @@ const MedicineListItem: NextPage<Imedicine> = ({ medicine }) => {
           <StyledListItemInfo>
             <div className="medicineImage">
               {itemKey ? (
-                <Image
+                <img
                   src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
                   alt={medicine.itemName}
                   width={100}
                   height={100}
-                ></Image>
+                ></img>
               ) : (
                 <Image src={removeIcon} alt={medicine.itemName} width={100} height={100}></Image>
               )}
