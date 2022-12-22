@@ -16,6 +16,7 @@ import {
 } from "../../styles/search/StyledSearch";
 import StyledButton from "../../styles/button/StyledButton";
 import StyledError from "../../styles/StyledError";
+import HeadInfo from "../../components/head/HeadInfo";
 
 type FormValues = {
   mainSymptom: string;
@@ -30,6 +31,7 @@ const MySymptoms: NextPage = () => {
   const dispatch = useDispatch();
   const [medicineList, setMedicineList] = useState<ImedicineInformation[]>([]);
   const searchMedicineList = useSelector((state: ImedicineList) => state.medicineList);
+  const [search, setSearch] = useState<string>("");
 
   const medicineInputRef = useRef<HTMLInputElement>(null);
 
@@ -91,8 +93,13 @@ const MySymptoms: NextPage = () => {
               dispatch,
               takingMedicine,
             });
+            setSearch(data.mainSymptom as string);
           })}
         >
+          <HeadInfo
+            title={`${search} | 검색결과`}
+            description={`${search} 증상으로 약을 검색합니다`}
+          />
           <span className="pageTitle">증상으로 찾습니다.</span>
           <p>주요 증상을 알려주세요</p>
           <input className="searchBar" {...register("mainSymptom", { required: true })} />

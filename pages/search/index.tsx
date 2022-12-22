@@ -13,6 +13,7 @@ import { reset } from "../../store/medicine/medicineSlice";
 import StyledSearch from "../../styles/search/StyledSearch";
 import StyledSearchPage from "../../styles/search/StyledSearchPage";
 import StyledError from "../../styles/StyledError";
+import HeadInfo from "../../components/head/HeadInfo";
 
 type FormValues = {
   searchValue: string;
@@ -22,6 +23,7 @@ const SearchMedicine: NextPage = () => {
   const dispatch = useDispatch();
   const [medicineList, setMedicineList] = useState<ImedicineInformation[]>([]);
   const searchMedicineList = useSelector((state: ImedicineList) => state.medicineList);
+  const [search, setSearch] = useState<string>("");
 
   // 새로고침 시  검색했던 기록이 있으면 검색결과 가져옴
   useEffect(() => {
@@ -48,8 +50,13 @@ const SearchMedicine: NextPage = () => {
         <form
           onSubmit={handleSubmit((data: formProps) => {
             getMedicineList({ data, setMedicineList, dispatch });
+            setSearch(data.searchValue as string);
           })}
         >
+          <HeadInfo
+            title={`${search} | 검색결과`}
+            description={`${search} 약 이름으로 검색합니다`}
+          />
           <div className="searchArea">
             <input className="searchBar" {...register("searchValue", { required: true })} />
             <button className="submitIcon" type="submit">
