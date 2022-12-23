@@ -17,12 +17,6 @@ const Information: NextPage<Imedicine> = ({ medicine }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  // const info = medicine;
-
-  const history: ImedicineInformation = useSelector((state: ImedicineDetailPersist) => {
-    return state.medicineDetail;
-  });
-
   // 라우터 통해서 약 정보 가져올 때
   useEffect(() => {
     if ((router.query.medicine as string) !== undefined) {
@@ -37,7 +31,12 @@ const Information: NextPage<Imedicine> = ({ medicine }) => {
 
   return (
     <StyledMedicineDetail>
-      <HeadInfo title={medicine.itemName} description={medicine.efcyQesitm.replace(regex, "")} />
+      <HeadInfo
+        title={medicine.itemName}
+        description={medicine.efcyQesitm.replace(regex, "")}
+        url={`https://www.whatmedicineisthis.info/medicine/${medicine.itemName}`}
+        img={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
+      />
       {/* 이미지 */}
       <div className="medicineImage">
         {medicine.itemImage !== "" ? (
