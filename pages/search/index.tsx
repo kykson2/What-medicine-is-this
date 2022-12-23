@@ -15,6 +15,8 @@ import StyledSearchPage from "../../styles/search/StyledSearchPage";
 import StyledError from "../../styles/StyledError";
 import HeadInfo from "../../components/head/HeadInfo";
 
+import icon from "../../icon/medicine_icon.svg";
+
 type FormValues = {
   searchValue: string;
 };
@@ -56,6 +58,8 @@ const SearchMedicine: NextPage = () => {
           <HeadInfo
             title={`${search} | 검색결과`}
             description={`${search} 약 이름으로 검색합니다`}
+            url={`https://www.whatmedicineisthis.info/search/`}
+            img={icon}
           />
           <div className="searchArea">
             <input className="searchBar" {...register("searchValue", { required: true })} />

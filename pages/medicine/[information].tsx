@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { ImedicineDetailPersist, ImedicineInformation } from "../../interfaces/medicine";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import { medicineDetail } from "../../store/medicine/medicineDetailSlice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import drugIcon from "../../icon/drug_icon.svg";
 import StyledMedicineDetail from "../../styles/detail/StyledMedicineDetail";
@@ -34,7 +34,11 @@ const Information: NextPage<Imedicine> = ({ medicine }) => {
       <HeadInfo
         title={medicine.itemName}
         description={medicine.efcyQesitm.replace(regex, "")}
-        url={`https://www.whatmedicineisthis.info/medicine/${medicine.itemName}`}
+        url={
+          medicine.itemImage
+            ? `https://www.whatmedicineisthis.info/medicine/${medicine.itemName}`
+            : ""
+        }
         img={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
       />
       {/* 이미지 */}
