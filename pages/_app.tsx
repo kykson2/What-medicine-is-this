@@ -19,14 +19,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       url: "https://www.whatmedicineisthis.info/",
       title: "e약은 뭐예요?",
       description: "약을 안전하게 복용할 수 있도록 도와드려요",
-      images: [{ url: icon, width: 800, height: 600 }],
+      images: [{ url: icon, width: 800, height: 600, alt: "e약은 뭐예요" }],
       site_name: "whatmedicineisthis",
     },
   };
   return (
     <>
       <Head>
-        <title>e약은 뭐예요</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link
           rel="shortcut icon"

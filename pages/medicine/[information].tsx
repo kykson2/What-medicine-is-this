@@ -39,7 +39,7 @@ const Information: NextPage<Imedicine> = ({ medicine }) => {
       />
       {/* 이미지 */}
       <div className="medicineImage">
-        {medicine.itemImage !== "" ? (
+        {medicine.itemImage ? (
           <img
             src={`https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/${itemKey}`}
             alt={medicine.itemName}
