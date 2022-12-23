@@ -18,6 +18,8 @@ import StyledButton from "../../styles/button/StyledButton";
 import StyledError from "../../styles/StyledError";
 import HeadInfo from "../../components/head/HeadInfo";
 
+import icon from "../../icon/medicine_icon.svg";
+
 type FormValues = {
   mainSymptom: string;
   subSymptom: string;
@@ -99,6 +101,8 @@ const MySymptoms: NextPage = () => {
           <HeadInfo
             title={`${search} | 검색결과`}
             description={`${search} 증상으로 약을 검색합니다`}
+            url={`https://www.whatmedicineisthis.info/symptoms/`}
+            img={icon}
           />
           <span className="pageTitle">증상으로 찾습니다.</span>
           <p>주요 증상을 알려주세요</p>
