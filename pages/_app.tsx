@@ -5,8 +5,24 @@ import { Provider } from "react-redux";
 import store, { persistor } from "../store/store";
 import { PersistGate } from "redux-persist/integration/react";
 import StyledGlobal from "../styles/StyledGlobal";
+import { DefaultSeo } from "next-seo";
+import icon from "../icon/medicine_icon.svg";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const DEFAULT_SEO = {
+    title: "e약은 뭐예요?",
+    description: "약을 안전하게 복용할 수 있도록 도와드려요",
+    canonical: "https://www.whatmedicineisthis.info/",
+    openGraph: {
+      locale: "ko_KR",
+      type: "website",
+      url: "https://www.whatmedicineisthis.info/",
+      title: "e약은 뭐예요?",
+      description: "약을 안전하게 복용할 수 있도록 도와드려요",
+      images: [{ url: icon, width: 800, height: 600 }],
+      site_name: "whatmedicineisthis",
+    },
+  };
   return (
     <>
       <Head>
@@ -18,6 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           href="http://www.whatmedicineisthis.info/favicon.ico"
         />
       </Head>
+      <DefaultSeo {...DEFAULT_SEO} />
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <StyledGlobal />
