@@ -1,5 +1,5 @@
 # 이게 무슨 약이야?
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/40460377/209541334-26a32a5f-64d7-4649-80cb-0fcefdbd7dcb.gif)
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/40460377/209558602-3b85b945-8ed9-4b2d-be4e-bd6eca29c083.gif)
 
 
 ### 프로젝트 소개
