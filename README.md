@@ -1,4 +1,6 @@
 # 이게 무슨 약이야?
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/40460377/209541334-26a32a5f-64d7-4649-80cb-0fcefdbd7dcb.gif)
+
 
 ### 프로젝트 소개
 
