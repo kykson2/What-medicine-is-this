@@ -108,7 +108,7 @@ const Information: NextPage<Imedicine> = ({ medicine }) => {
   );
 };
 
-export async function getServerSideProps(context: { query: { information: string } }) {
+export async function getServerSideProps(context: { params: { information: string } }) {
   const url = "http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList";
 
   let queryParams = "?" + encodeURIComponent("serviceKey") + "=" + process.env.NEXT_PUBLIC_API_KEY;
@@ -117,7 +117,7 @@ export async function getServerSideProps(context: { query: { information: string
   queryParams += encodeURIComponent("itemName");
   queryParams += "=";
 
-  queryParams += encodeURIComponent(`${context.query.information.split("(")[0]}`);
+  queryParams += encodeURIComponent(`${context.params.information.split("(")[0]}`);
   queryParams += "&" + encodeURIComponent("type") + "=" + encodeURIComponent("json");
 
   const response: Response = await fetch(url + queryParams);
